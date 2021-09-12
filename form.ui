@@ -29,7 +29,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>BG Remover - By DevloversID</string>
+   <string>BG Cleaner - By DevloversID</string>
   </property>
   <widget class="QWidget" name="bgcleaner">
    <property name="minimumSize">
@@ -60,10 +60,10 @@
      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Poppins, '; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'DejaVu Sans'; font-weight:600;&quot;&gt;Background Cleaner Qt by Devlovers ID&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'DejaVu Sans'; font-weight:600;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'DejaVu Sans';&quot;&gt;A simple gui apps to help you remove background from various images. This tool need rembg module to done its job. Please install it first if the module not exist yet in your system.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'DejaVu Sans'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Background Cleaner Qt by Devlovers ID&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-weight:600;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;A simple gui apps to help you remove background from various images. This tool need rembg module to done its job. Please install it first if the module not exist yet in your system.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="overwriteMode">
      <bool>false</bool>
@@ -75,7 +75,7 @@ p, li { white-space: pre-wrap; }
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QTabWidget" name="tabWidget">
+   <widget class="QTabWidget" name="mainTab">
     <property name="geometry">
      <rect>
       <x>0</x>
@@ -139,7 +139,7 @@ p, li { white-space: pre-wrap; }
       <property name="title">
        <string>Files/Folder</string>
       </property>
-      <widget class="QPlainTextEdit" name="plainTextEdit">
+      <widget class="QPlainTextEdit" name="inputFile_local">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -181,7 +181,7 @@ p, li { white-space: pre-wrap; }
         <string>Directory to save results</string>
        </property>
       </widget>
-      <widget class="QPlainTextEdit" name="plainTextEdit_2">
+      <widget class="QPlainTextEdit" name="outputFile_local">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -197,7 +197,7 @@ p, li { white-space: pre-wrap; }
         <bool>false</bool>
        </property>
       </widget>
-      <widget class="QToolButton" name="toolButton_2">
+      <widget class="QToolButton" name="btnSave_local">
        <property name="geometry">
         <rect>
          <x>338</x>
@@ -210,7 +210,7 @@ p, li { white-space: pre-wrap; }
         <string>Browse</string>
        </property>
       </widget>
-      <widget class="QToolButton" name="toolButton">
+      <widget class="QToolButton" name="btnBrowse_local">
        <property name="geometry">
         <rect>
          <x>340</x>
@@ -236,7 +236,7 @@ p, li { white-space: pre-wrap; }
       <property name="title">
        <string>  Extra Parameter</string>
       </property>
-      <widget class="QComboBox" name="comboBox">
+      <widget class="QComboBox" name="opt_alphaMating">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -256,7 +256,7 @@ p, li { white-space: pre-wrap; }
         </property>
        </item>
       </widget>
-      <widget class="QSpinBox" name="spinBox">
+      <widget class="QSpinBox" name="val_fgThreshold">
        <property name="geometry">
         <rect>
          <x>290</x>
@@ -292,7 +292,7 @@ p, li { white-space: pre-wrap; }
         <string>Alpha matting background threshold</string>
        </property>
       </widget>
-      <widget class="QSpinBox" name="spinBox_2">
+      <widget class="QSpinBox" name="val_bgThreshold">
        <property name="geometry">
         <rect>
          <x>290</x>
@@ -315,7 +315,7 @@ p, li { white-space: pre-wrap; }
         <string>Alpha matting erode size</string>
        </property>
       </widget>
-      <widget class="QSpinBox" name="spinBox_3">
+      <widget class="QSpinBox" name="val_erodeSize">
        <property name="geometry">
         <rect>
          <x>290</x>
@@ -338,7 +338,7 @@ p, li { white-space: pre-wrap; }
         <string>Alpha matting base size</string>
        </property>
       </widget>
-      <widget class="QSpinBox" name="spinBox_4">
+      <widget class="QSpinBox" name="val_baseSize">
        <property name="geometry">
         <rect>
          <x>290</x>
@@ -405,7 +405,7 @@ p, li { white-space: pre-wrap; }
         <string>Port</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="lineEdit">
+      <widget class="QLineEdit" name="input_serverUrl">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -415,7 +415,7 @@ p, li { white-space: pre-wrap; }
         </rect>
        </property>
       </widget>
-      <widget class="QLineEdit" name="lineEdit_2">
+      <widget class="QLineEdit" name="input_serverPort">
        <property name="geometry">
         <rect>
          <x>280</x>
@@ -438,7 +438,7 @@ p, li { white-space: pre-wrap; }
       <property name="title">
        <string>Files/Folder</string>
       </property>
-      <widget class="QPlainTextEdit" name="plainTextEdit_3">
+      <widget class="QPlainTextEdit" name="inputFile_remote">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -480,7 +480,7 @@ p, li { white-space: pre-wrap; }
         <string>Directory to save results</string>
        </property>
       </widget>
-      <widget class="QPlainTextEdit" name="plainTextEdit_4">
+      <widget class="QPlainTextEdit" name="outputFile_remote">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -496,7 +496,7 @@ p, li { white-space: pre-wrap; }
         <bool>false</bool>
        </property>
       </widget>
-      <widget class="QToolButton" name="toolButton_3">
+      <widget class="QToolButton" name="btnSave_remote">
        <property name="geometry">
         <rect>
          <x>338</x>
@@ -509,7 +509,7 @@ p, li { white-space: pre-wrap; }
         <string>Browse</string>
        </property>
       </widget>
-      <widget class="QToolButton" name="toolButton_4">
+      <widget class="QToolButton" name="btnBrowse_remote">
        <property name="geometry">
         <rect>
          <x>340</x>
@@ -557,17 +557,17 @@ p, li { white-space: pre-wrap; }
        <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Poppins, '; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'DejaVu Sans';&quot;&gt;Background Cleaner v0.1.1 &lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'DejaVu Sans';&quot;&gt;made with ❤️ with Qt Creator by Devlovers ID.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'DejaVu Sans';&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'DejaVu Sans';&quot;&gt;Links:&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'DejaVu Sans';&quot;&gt;- Project Repository (&lt;/span&gt;&lt;a href=&quot;https://github.com/devlovers-id/bgcleaner-qt&quot;&gt;&lt;span style=&quot; font-family:'DejaVu Sans'; text-decoration: underline; color:#d8d8d8;&quot;&gt;https://github.com/devlovers-id/bgcleaner-qt&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:'DejaVu Sans';&quot;&gt;)&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'DejaVu Sans';&quot;&gt;- Rembg Repository (&lt;/span&gt;&lt;a href=&quot;https://github.com/danielgatis/rembg&quot;&gt;&lt;span style=&quot; font-family:'DejaVu Sans'; text-decoration: underline; color:#d8d8d8;&quot;&gt;https://github.com/danielgatis/rembg&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:'DejaVu Sans';&quot;&gt;)&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'DejaVu Sans';&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'DejaVu Sans';&quot;&gt;Version: &lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'DejaVu Sans';&quot;&gt;Qt Creator 4.12.2&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'DejaVu Sans';&quot;&gt;Based on Qt 5.14.2&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'DejaVu Sans'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Background Cleaner v0.1.1 &lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;made with ❤️ with Qt Creator by Devlovers ID.&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Links:&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;- Project Repository (&lt;a href=&quot;https://github.com/devlovers-id/bgcleaner-qt&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#d8d8d8;&quot;&gt;https://github.com/devlovers-id/bgcleaner-qt&lt;/span&gt;&lt;/a&gt;)&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;- Rembg Repository (&lt;a href=&quot;https://github.com/danielgatis/rembg&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#d8d8d8;&quot;&gt;https://github.com/danielgatis/rembg&lt;/span&gt;&lt;/a&gt;)&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Version: &lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Qt Creator 4.12.2&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Based on Qt 5.14.2&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
       <property name="overwriteMode">
        <bool>false</bool>
@@ -585,9 +585,9 @@ p, li { white-space: pre-wrap; }
     <property name="geometry">
      <rect>
       <x>30</x>
-      <y>10</y>
+      <y>20</y>
       <width>101</width>
-      <height>101</height>
+      <height>91</height>
      </rect>
     </property>
    </widget>
