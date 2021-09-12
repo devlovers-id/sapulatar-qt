@@ -3,20 +3,61 @@ import sys
 import os
 
 
-from PySide2.QtWidgets import QApplication, QWidget, QMainWindow
+from PySide2.QtWidgets import QApplication, QWidget, QMainWindow, QMessageBox
 from PySide2.QtCore import QFile
 from PySide2.QtUiTools import QUiLoader
+
+def show_message(msg_type=QMessageBox.Information, msg="Info", scrollable=False):
+    box = QMessageBox(msg_type, "Notification", msg)
+    box.exec_()
+
+def inputFiles_local():
+    print ("Local browse button clicked")
+    show_message(msg="Browse files")
+
+def outputFiles_local():
+    print ("Local save button clicked")
+    show_message(msg="Browse directory to save result")
+
+def processLocal():
+    print ("Local process button clicked")
+    show_message(msg="Process Complete!")
+
+def inputFiles_remote():
+    print ("Remote browse button clicked")
+    show_message(msg="Browse files (remote)")
+
+def outputFiles_remote():
+    print ("Remote save button clicked")
+    show_message(msg="Browse directory to save result (remote)")
+
+def processRemote():
+    print ("Remote process button clicked")
+    show_message(msg="Remote process Complete!")
+
+
 
 if __name__ == "__main__":
     loader = QUiLoader()
     app = QApplication(sys.argv)
     main_window = loader.load("form.ui", None)
+
+    main_window.btnBrowse_local.clicked.connect(inputFiles_local)
+    main_window.btnSave_local.clicked.connect(outputFiles_local)
+    main_window.btn_processLocal.clicked.connect(processLocal)
+
+    main_window.btnBrowse_remote.clicked.connect(inputFiles_remote)
+    main_window.btnSave_remote.clicked.connect(outputFiles_remote)
+    main_window.btn_processRemote.clicked.connect(processRemote)
+
     main_window.show()
     app.exec_()
 
 
+
 ## =====================
 ## Initializing
+## check python version at least 3.8 with pip 21
 ## check dependencies: rembg, PIL, if not found run warning dialog
 
 ## =====================

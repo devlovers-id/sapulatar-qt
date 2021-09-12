@@ -349,7 +349,7 @@ p, li { white-space: pre-wrap; }
        </property>
       </widget>
      </widget>
-     <widget class="QPushButton" name="pushButton">
+     <widget class="QPushButton" name="btn_processLocal">
       <property name="geometry">
        <rect>
         <x>310</x>
@@ -523,7 +523,7 @@ p, li { white-space: pre-wrap; }
        </property>
       </widget>
      </widget>
-     <widget class="QPushButton" name="pushButton_2">
+     <widget class="QPushButton" name="btn_processRemote">
       <property name="geometry">
        <rect>
         <x>310</x>
@@ -595,4 +595,7 @@ p, li { white-space: pre-wrap; }
  </widget>
  <resources/>
  <connections/>
+ <slots>
+  <slot>infoMessage()</slot>
+ </slots>
 </ui>
