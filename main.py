@@ -110,10 +110,17 @@ def processLocal(the_window):
         for entry in os.scandir(inputFile):
             if entry.is_file():
                 files = inputFile + "/" + entry.name
-                outputFiles = the_window.outputFile_local.text() + "/" + os.path.basename(entry.name) + ".png"
+                outputFiles = the_window.outputFile_local.text() + "/" + os.path.basename(os.path.splitext(entry.name)[0]) + ".png"
                 print("Processsing: " + entry.name)
                 f = np.fromfile(files)
-                result = removebg(f)
+                result = removebg(
+                    f, 
+                    alpha_matting=a_value, 
+                    alpha_matting_foreground_threshold=af_value,
+                    alpha_matting_background_threshold=ab_value, 
+                    alpha_matting_erode_structure_size=ae_value, 
+                    alpha_matting_base_size=az_value,
+                    )
                 img = Image.open(io.BytesIO(result)).convert("RGBA")
                 img.save(outputFiles)
         show_message(msg="Process Complete! for " + fileName + "!")
