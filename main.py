@@ -94,7 +94,15 @@ def processLocal(the_window):
 
     if inputSource_local == 0:
         f = np.fromfile(inputFile)
-        result = removebg(f, alpha_matting=a_value, alpha_matting_foreground_threshold=af_value, alpha_matting_background_threshold=ab_value, alpha_matting_erode_structure_size=ae_value, alpha_matting_base_size=az_value,)
+        print(a_value)
+        result = removebg(
+            f, 
+            alpha_matting=a_value, 
+            alpha_matting_foreground_threshold=af_value, 
+            alpha_matting_background_threshold=ab_value, 
+            alpha_matting_erode_structure_size=ae_value, 
+            alpha_matting_base_size=az_value,
+            )
         img = Image.open(io.BytesIO(result)).convert("RGBA")
         img.save(outputDir)
         show_message(msg="Process Complete for " + fileName + "!")
@@ -103,11 +111,12 @@ def processLocal(the_window):
             if entry.is_file():
                 files = inputFile + "/" + entry.name
                 outputFiles = the_window.outputFile_local.text() + "/" + os.path.basename(entry.name) + ".png"
+                print("Processsing: " + entry.name)
                 f = np.fromfile(files)
                 result = removebg(f)
                 img = Image.open(io.BytesIO(result)).convert("RGBA")
                 img.save(outputFiles)
-            show_message(msg="Process Complete! for " + fileName + "!")
+        show_message(msg="Process Complete! for " + fileName + "!")
 
 ## Remote Tab Functions ================================================================================
 ## select file (remote)
