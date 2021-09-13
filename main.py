@@ -1,6 +1,7 @@
 # This Python file uses the following encoding: utf-8
 import sys
 import os
+import glob
 
 
 from PySide2.QtWidgets import QApplication, QWidget, QMainWindow, QMessageBox, QFileDialog
@@ -54,17 +55,16 @@ def dialogType_folder():
         main_window.inputFile_local.setText("")
 
 def selectFile(input_textfield):
-    print(inputSource_local)
     if inputSource_local == 0:
       opened_file, _ = QFileDialog.getOpenFileName(None, "Open Image", "", "Images (*.jpg *.png *.jpeg *.JPG)")
     else:
-      opened_file = QFileDialog.getExistingDirectory(None, "Select Input Directory", "", QFileDialog.ShowDirsOnly)
+      opened_file = QFileDialog.getExistingDirectory(None, "Select Input Directory", "", QFileDialog.DontUseNativeDialog)
     if opened_file:
         input_textfield.setText(opened_file)
         main_window.outputFile_local.setText(os.path.dirname(opened_file))
 ## select output directory
 def selectOutputdir(input_textfield):
-    output_dir = QFileDialog.getExistingDirectory(None, "Select Output Directory", "", QFileDialog.ShowDirsOnly)
+    output_dir = QFileDialog.getExistingDirectory(None, "Select Output Directory", "", QFileDialog.DontUseNativeDialog)
     if output_dir:
         input_textfield.setText(output_dir)
 
@@ -74,11 +74,17 @@ def processLocal(the_window):
     fileName = os.path.basename(os.path.splitext(inputFile)[0])
     outputDir = the_window.outputFile_local.text() + "/" + fileName + ".png"
 
-    print(the_window.opt_alphaMating.currentText())
+    # Arg. values
+    # alphamatting
+    if the_window.opt_alphaMating.currentText() == "Use alpha matting cutout":
+        a_value = True
+    else:
+        a_value = False
 
-    print(inputFile)
-    print(outputDir + "/" + fileName + ".png")
-
+    af_value = the_window.val_fgThreshold.value()
+    ab_value = the_window.val_bgThreshold.value()
+    ae_value = the_window.val_erodeSize.value()
+    az_value = the_window.val_baseSize.value()    
 
     # If blank
     if inputFile == "":
@@ -88,13 +94,20 @@ def processLocal(the_window):
 
     if inputSource_local == 0:
         f = np.fromfile(inputFile)
-        result = removebg(f)
+        result = removebg(f, alpha_matting=a_value, alpha_matting_foreground_threshold=af_value, alpha_matting_background_threshold=ab_value, alpha_matting_erode_structure_size=ae_value, alpha_matting_base_size=az_value,)
         img = Image.open(io.BytesIO(result)).convert("RGBA")
         img.save(outputDir)
+        show_message(msg="Process Complete for " + fileName + "!")
     else:
-        print("Batch process" + inputFile)
-
-    show_message(msg="Process Complete for " + fileName + "!")
+        for entry in os.scandir(inputFile):
+            if entry.is_file():
+                files = inputFile + "/" + entry.name
+                outputFiles = the_window.outputFile_local.text() + "/" + os.path.basename(entry.name) + ".png"
+                f = np.fromfile(files)
+                result = removebg(f)
+                img = Image.open(io.BytesIO(result)).convert("RGBA")
+                img.save(outputFiles)
+            show_message(msg="Process Complete! for " + fileName + "!")
 
 ## Remote Tab Functions ================================================================================
 ## select file (remote)
