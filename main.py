@@ -32,6 +32,10 @@ def show_message(msg_type=QMessageBox.Information, msg="Info", scrollable=False)
     box = QMessageBox(msg_type, "Notification", msg)
     box.exec_()
 
+def show_error(msg_type=QMessageBox.Warning, msg="Error!", scrollable=False):
+    box = QMessageBox(msg_type, "Notification", msg)
+    box.exec_()
+
 ## Local Tab Functions ================================================================================
 ## select file
 
@@ -40,18 +44,24 @@ def dialogType_file():
     if main_window.singleProcess_local.isChecked:
         print ("Single process selected!")
         inputSource_local = 0
+        main_window.inputFile_local.setText("")
 
 def dialogType_folder():
     global inputSource_local
     if main_window.batchProcess_local.isChecked:
         print ("Batch process selected!")
         inputSource_local = 1
+        main_window.inputFile_local.setText("")
 
 def selectFile(input_textfield):
     print(inputSource_local)
-    opened_file, _ = QFileDialog.getOpenFileName(None, "Open Image", "", "Images (*.jpg *.png *.jpeg *.JPG)")
+    if inputSource_local == 0:
+      opened_file, _ = QFileDialog.getOpenFileName(None, "Open Image", "", "Images (*.jpg *.png *.jpeg *.JPG)")
+    else:
+      opened_file = QFileDialog.getExistingDirectory(None, "Select Input Directory", "", QFileDialog.ShowDirsOnly)
     if opened_file:
         input_textfield.setText(opened_file)
+        main_window.outputFile_local.setText(os.path.dirname(opened_file))
 ## select output directory
 def selectOutputdir(input_textfield):
     output_dir = QFileDialog.getExistingDirectory(None, "Select Output Directory", "", QFileDialog.ShowDirsOnly)
@@ -59,17 +69,30 @@ def selectOutputdir(input_textfield):
         input_textfield.setText(output_dir)
 
 def processLocal(the_window):
+    ## Get Input Value
     inputFile = the_window.inputFile_local.text()
     fileName = os.path.basename(os.path.splitext(inputFile)[0])
     outputDir = the_window.outputFile_local.text() + "/" + fileName + ".png"
 
+    print(the_window.opt_alphaMating.currentText())
+
     print(inputFile)
     print(outputDir + "/" + fileName + ".png")
 
-    f = np.fromfile(inputFile)
-    result = removebg(f)
-    img = Image.open(io.BytesIO(result)).convert("RGBA")
-    img.save(outputDir)
+
+    # If blank
+    if inputFile == "":
+        show_error(msg="Please select input file/folder first!")
+    if outputDir == "":
+        show_error(msg="Input file/folder not found!")
+
+    if inputSource_local == 0:
+        f = np.fromfile(inputFile)
+        result = removebg(f)
+        img = Image.open(io.BytesIO(result)).convert("RGBA")
+        img.save(outputDir)
+    else:
+        print("Batch process" + inputFile)
 
     show_message(msg="Process Complete for " + fileName + "!")
 

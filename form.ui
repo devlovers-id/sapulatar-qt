@@ -200,6 +200,9 @@ p, li { white-space: pre-wrap; }
          <height>31</height>
         </rect>
        </property>
+       <property name="placeholderText">
+        <string>Select file/folder</string>
+       </property>
       </widget>
       <widget class="QLineEdit" name="outputFile_local">
        <property name="geometry">
@@ -209,6 +212,9 @@ p, li { white-space: pre-wrap; }
          <width>321</width>
          <height>31</height>
         </rect>
+       </property>
+       <property name="placeholderText">
+        <string>Select a directory to save the result</string>
        </property>
       </widget>
       <widget class="QRadioButton" name="singleProcess_local">
