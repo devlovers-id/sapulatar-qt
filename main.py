@@ -36,7 +36,7 @@ def show_message(msg_type=QMessageBox.Information, msg="Info", scrollable=False)
 def show_error(msg_type=QMessageBox.Warning, msg="Error!", scrollable=False):
     box = QMessageBox(msg_type, "Notification", msg)
     box.exec_()
-
+    
 ## Local Tab Functions ================================================================================
 ## select file
 
@@ -94,7 +94,6 @@ def processLocal(the_window):
 
     if inputSource_local == 0:
         f = np.fromfile(inputFile)
-        print(a_value)
         result = removebg(
             f, 
             alpha_matting=a_value, 
@@ -164,31 +163,8 @@ if __name__ == "__main__":
 
     if app_errors:
         show_message(msg_type=QMessageBox.Critical, msg=app_errors)
-        exit(1)
 
     app.exec_()
-
-
-
-
-
-## =====================
-## For Tab local
-## Get input info, file, files, or directory
-## Get input info of directory output
-
-## if input is file
-## the command is: rembg "input.foo" -o "OUTPUTDIR/output.png" (if parameter active, add paramater after command)
-
-## if input is random files
-## the command is loop command (bash equiv): for i in list; do rembg "$i" -o "OUTPUTDIR/${i%.*}.png"; done (if parameter active, add paramater after command)
-
-## if input is directory
-## the command is: rembg -p "INPUTDIR" "OUTPUTDIR" (if parameter active, add paramater after command)
-
-## Run warning dialog if:
-## - path/file input/output not found or blank
-## - output folder or output file name already exist
 
 ## =====================
 ## For Tab Remote
