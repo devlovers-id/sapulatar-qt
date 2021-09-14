@@ -48,14 +48,14 @@
     <property name="geometry">
      <rect>
       <x>140</x>
-      <y>10</y>
+      <y>20</y>
       <width>341</width>
       <height>111</height>
      </rect>
     </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgba(255, 255, 255, 0);
-border-color: rgba(255, 255, 255, 0);</string>
+border-color: rgba(255, 255, 255, 0) !important;</string>
     </property>
     <property name="html">
      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -63,7 +63,6 @@ border-color: rgba(255, 255, 255, 0);</string>
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'DejaVu Sans'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Sapulatar-qt by Devlovers ID&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-weight:600;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;A simple gui apps to help you remove background from various images. This tool need rembg module to done its job. Please install it first if the module not exist yet in your system.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="overwriteMode">
@@ -81,7 +80,7 @@ p, li { white-space: pre-wrap; }
      <rect>
       <x>0</x>
       <y>140</y>
-      <width>481</width>
+      <width>501</width>
       <height>541</height>
      </rect>
     </property>
@@ -133,7 +132,7 @@ p, li { white-space: pre-wrap; }
        <rect>
         <x>10</x>
         <y>20</y>
-        <width>431</width>
+        <width>451</width>
         <height>201</height>
        </rect>
       </property>
@@ -169,7 +168,7 @@ p, li { white-space: pre-wrap; }
       <widget class="QToolButton" name="btnSave_local">
        <property name="geometry">
         <rect>
-         <x>338</x>
+         <x>350</x>
          <y>150</y>
          <width>81</width>
          <height>31</height>
@@ -182,7 +181,7 @@ p, li { white-space: pre-wrap; }
       <widget class="QToolButton" name="btnBrowse_local">
        <property name="geometry">
         <rect>
-         <x>340</x>
+         <x>352</x>
          <y>90</y>
          <width>81</width>
          <height>31</height>
@@ -197,7 +196,7 @@ p, li { white-space: pre-wrap; }
         <rect>
          <x>10</x>
          <y>90</y>
-         <width>321</width>
+         <width>331</width>
          <height>31</height>
         </rect>
        </property>
@@ -210,7 +209,7 @@ p, li { white-space: pre-wrap; }
         <rect>
          <x>10</x>
          <y>150</y>
-         <width>321</width>
+         <width>331</width>
          <height>31</height>
         </rect>
        </property>
@@ -259,7 +258,7 @@ p, li { white-space: pre-wrap; }
        <rect>
         <x>10</x>
         <y>230</y>
-        <width>431</width>
+        <width>451</width>
         <height>241</height>
        </rect>
       </property>
@@ -276,7 +275,7 @@ p, li { white-space: pre-wrap; }
         <rect>
          <x>10</x>
          <y>30</y>
-         <width>411</width>
+         <width>421</width>
          <height>31</height>
         </rect>
        </property>
@@ -294,7 +293,7 @@ p, li { white-space: pre-wrap; }
       <widget class="QSpinBox" name="val_fgThreshold">
        <property name="geometry">
         <rect>
-         <x>290</x>
+         <x>300</x>
          <y>70</y>
          <width>131</width>
          <height>31</height>
@@ -339,7 +338,7 @@ p, li { white-space: pre-wrap; }
       <widget class="QSpinBox" name="val_bgThreshold">
        <property name="geometry">
         <rect>
-         <x>290</x>
+         <x>300</x>
          <y>110</y>
          <width>131</width>
          <height>31</height>
@@ -371,7 +370,7 @@ p, li { white-space: pre-wrap; }
       <widget class="QSpinBox" name="val_erodeSize">
        <property name="geometry">
         <rect>
-         <x>290</x>
+         <x>300</x>
          <y>150</y>
          <width>131</width>
          <height>31</height>
@@ -406,7 +405,7 @@ p, li { white-space: pre-wrap; }
       <widget class="QSpinBox" name="val_baseSize">
        <property name="geometry">
         <rect>
-         <x>290</x>
+         <x>300</x>
          <y>190</y>
          <width>131</width>
          <height>31</height>
@@ -426,7 +425,7 @@ p, li { white-space: pre-wrap; }
      <widget class="QPushButton" name="btn_processLocal">
       <property name="geometry">
        <rect>
-        <x>310</x>
+        <x>320</x>
         <y>480</y>
         <width>121</width>
         <height>41</height>
@@ -446,7 +445,7 @@ p, li { white-space: pre-wrap; }
        <rect>
         <x>10</x>
         <y>10</y>
-        <width>431</width>
+        <width>451</width>
         <height>91</height>
        </rect>
       </property>
@@ -469,7 +468,7 @@ p, li { white-space: pre-wrap; }
       <widget class="QLabel" name="label_11">
        <property name="geometry">
         <rect>
-         <x>280</x>
+         <x>320</x>
          <y>30</y>
          <width>121</width>
          <height>17</height>
@@ -482,7 +481,7 @@ p, li { white-space: pre-wrap; }
       <widget class="QLineEdit" name="input_serverPort">
        <property name="geometry">
         <rect>
-         <x>280</x>
+         <x>320</x>
          <y>50</y>
          <width>121</width>
          <height>31</height>
@@ -494,7 +493,7 @@ p, li { white-space: pre-wrap; }
         <rect>
          <x>10</x>
          <y>50</y>
-         <width>251</width>
+         <width>291</width>
          <height>31</height>
         </rect>
        </property>
@@ -505,7 +504,7 @@ p, li { white-space: pre-wrap; }
        <rect>
         <x>10</x>
         <y>110</y>
-        <width>431</width>
+        <width>451</width>
         <height>151</height>
        </rect>
       </property>
@@ -541,7 +540,7 @@ p, li { white-space: pre-wrap; }
       <widget class="QToolButton" name="btnSave_remote">
        <property name="geometry">
         <rect>
-         <x>338</x>
+         <x>360</x>
          <y>110</y>
          <width>81</width>
          <height>31</height>
@@ -554,7 +553,7 @@ p, li { white-space: pre-wrap; }
       <widget class="QToolButton" name="btnBrowse_remote">
        <property name="geometry">
         <rect>
-         <x>340</x>
+         <x>362</x>
          <y>50</y>
          <width>81</width>
          <height>31</height>
@@ -569,7 +568,7 @@ p, li { white-space: pre-wrap; }
         <rect>
          <x>10</x>
          <y>50</y>
-         <width>321</width>
+         <width>341</width>
          <height>31</height>
         </rect>
        </property>
@@ -579,7 +578,7 @@ p, li { white-space: pre-wrap; }
         <rect>
          <x>10</x>
          <y>110</y>
-         <width>321</width>
+         <width>341</width>
          <height>31</height>
         </rect>
        </property>
@@ -588,7 +587,7 @@ p, li { white-space: pre-wrap; }
      <widget class="QPushButton" name="btn_processRemote">
       <property name="geometry">
        <rect>
-        <x>310</x>
+        <x>320</x>
         <y>480</y>
         <width>121</width>
         <height>41</height>
@@ -643,14 +642,23 @@ p, li { white-space: pre-wrap; }
      </widget>
     </widget>
    </widget>
-   <widget class="QGraphicsView" name="logo">
+   <widget class="QLabel" name="label_10">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>20</y>
-      <width>101</width>
-      <height>91</height>
+      <x>10</x>
+      <y>30</y>
+      <width>131</width>
+      <height>71</height>
      </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>assets/logo.png</pixmap>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
   </widget>
