@@ -54,7 +54,8 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
+     <string notr="true">background-color: rgba(255, 255, 255, 0);
+border-color: rgba(255, 255, 255, 0);</string>
     </property>
     <property name="html">
      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -261,6 +262,11 @@ p, li { white-space: pre-wrap; }
         <width>431</width>
         <height>241</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>DejaVu Sans</family>
+       </font>
       </property>
       <property name="title">
        <string>  Extra Parameter</string>
