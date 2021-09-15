@@ -3,7 +3,6 @@ import sys
 import os
 import glob
 
-
 from PySide2.QtWidgets import QApplication, QWidget, QMainWindow, QMessageBox, QFileDialog
 from PySide2.QtCore import QFile
 from PySide2.QtUiTools import QUiLoader
@@ -36,7 +35,7 @@ def show_message(msg_type=QMessageBox.Information, msg="Info", scrollable=False)
 def show_error(msg_type=QMessageBox.Warning, msg="Error!", scrollable=False):
     box = QMessageBox(msg_type, "Notification", msg)
     box.exec_()
-    
+
 ## Local Tab Functions ================================================================================
 ## select file
 
@@ -84,7 +83,7 @@ def processLocal(the_window):
     af_value = the_window.val_fgThreshold.value()
     ab_value = the_window.val_bgThreshold.value()
     ae_value = the_window.val_erodeSize.value()
-    az_value = the_window.val_baseSize.value()    
+    az_value = the_window.val_baseSize.value()
 
     # If blank
     if inputFile == "":
@@ -95,11 +94,11 @@ def processLocal(the_window):
     if inputSource_local == 0:
         f = np.fromfile(inputFile)
         result = removebg(
-            f, 
-            alpha_matting=a_value, 
-            alpha_matting_foreground_threshold=af_value, 
-            alpha_matting_background_threshold=ab_value, 
-            alpha_matting_erode_structure_size=ae_value, 
+            f,
+            alpha_matting=a_value,
+            alpha_matting_foreground_threshold=af_value,
+            alpha_matting_background_threshold=ab_value,
+            alpha_matting_erode_structure_size=ae_value,
             alpha_matting_base_size=az_value,
             )
         img = Image.open(io.BytesIO(result)).convert("RGBA")
@@ -107,18 +106,18 @@ def processLocal(the_window):
         show_message(msg="Process Complete for " + fileName + "!")
     else:
         for entry in os.scandir(inputFile):
-            if entry.is_file(): 
+            if entry.is_file():
                 files = inputFile + "/" + entry.name
                 if files.endswith(('.jpg', '.jpeg', '.png', '.JPG', '.JPEG')):
                     outputFiles = the_window.outputFile_local.text() + "/" + os.path.basename(os.path.splitext(entry.name)[0]) + ".png"
                     print("Processsing: " + entry.name)
                     f = np.fromfile(files)
                     result = removebg(
-                        f, 
-                        alpha_matting=a_value, 
+                        f,
+                        alpha_matting=a_value,
                         alpha_matting_foreground_threshold=af_value,
-                        alpha_matting_background_threshold=ab_value, 
-                        alpha_matting_erode_structure_size=ae_value, 
+                        alpha_matting_background_threshold=ab_value,
+                        alpha_matting_erode_structure_size=ae_value,
                         alpha_matting_base_size=az_value,
                         )
                     img = Image.open(io.BytesIO(result)).convert("RGBA")
@@ -149,6 +148,7 @@ if __name__ == "__main__":
     loader = QUiLoader()
     app = QApplication(sys.argv)
     main_window = loader.load("form.ui", None)
+    progressbar = loader.load("dialog.ui", None)
 
     main_window.singleProcess_local.clicked.connect(dialogType_file)
     main_window.batchProcess_local.clicked.connect(dialogType_folder)
@@ -156,7 +156,7 @@ if __name__ == "__main__":
     main_window.btnSave_local.clicked.connect(lambda: selectOutputdir(main_window.outputFile_local))
     main_window.btn_processLocal.clicked.connect(lambda: processLocal(main_window))
 
-    
+
     main_window.btnBrowse_remote.clicked.connect(lambda: selectFile_remote(main_window.inputFile_remote))
     main_window.btnSave_remote.clicked.connect(lambda: selectOutputdir_remote(main_window.outputFile_remote))
     main_window.btn_processRemote.clicked.connect(processRemote)
