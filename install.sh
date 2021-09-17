@@ -87,5 +87,13 @@ chmod +x $HOME/.local/bin/sapulatar-qt
 echo "Copying launcher"
 cp $mainDir/sapulatar-qt/assets/sapulatar-qt.desktop $HOME/.local/share/applications/sapulatar-qt.desktop
 
+
+echo $PATH | sed "s/:/\n/g" | grep "$(echo $HOME)/.local/bin"
+CEKPATH=$?
+if [[ ! $CEKPATH -eq 0 ]]; then
+    echo -e "Warning: $HOME/.local/bin not in your PATH! Add \"export PATH=\"\$HOME/.local/bin:\$PATH\" into .bashrc or .zshrc to run sapulatar-qt directly from your console\!"
+fi
+
+
 # checking installation
 echo "Instalation complete!"
