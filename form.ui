@@ -104,7 +104,7 @@ p, li { white-space: pre-wrap; }
      <enum>QTabWidget::Rounded</enum>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>2</number>
     </property>
     <property name="iconSize">
      <size>
@@ -135,7 +135,7 @@ p, li { white-space: pre-wrap; }
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>20</y>
+        <y>10</y>
         <width>451</width>
         <height>201</height>
        </rect>
@@ -261,7 +261,7 @@ p, li { white-space: pre-wrap; }
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>230</y>
+        <y>220</y>
         <width>451</width>
         <height>241</height>
        </rect>
@@ -442,7 +442,7 @@ p, li { white-space: pre-wrap; }
     </widget>
     <widget class="QWidget" name="tabRemote">
      <attribute name="title">
-      <string>Remote Process</string>
+      <string>Remote Process (WIP)</string>
      </attribute>
      <widget class="QGroupBox" name="groupBox_2">
       <property name="geometry">
@@ -491,6 +491,9 @@ p, li { white-space: pre-wrap; }
          <height>31</height>
         </rect>
        </property>
+       <property name="placeholderText">
+        <string>5000</string>
+       </property>
       </widget>
       <widget class="QLineEdit" name="input_serverUrl">
        <property name="geometry">
@@ -500,6 +503,9 @@ p, li { white-space: pre-wrap; }
          <width>291</width>
          <height>31</height>
         </rect>
+       </property>
+       <property name="placeholderText">
+        <string>http://192.168.1.10</string>
        </property>
       </widget>
      </widget>
@@ -576,6 +582,9 @@ p, li { white-space: pre-wrap; }
          <height>31</height>
         </rect>
        </property>
+       <property name="placeholderText">
+        <string>Select file</string>
+       </property>
       </widget>
       <widget class="QLineEdit" name="outputFile_remote">
        <property name="geometry">
@@ -585,6 +594,9 @@ p, li { white-space: pre-wrap; }
          <width>341</width>
          <height>31</height>
         </rect>
+       </property>
+       <property name="placeholderText">
+        <string>Select a directory to save the result</string>
        </property>
       </widget>
      </widget>
@@ -624,16 +636,24 @@ border: none;</string>
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'DejaVu Sans'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Sapulatar-qt v0.1.1 &lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Sapulatar-qt v1.0.0-alpha &lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;made with ❤️ with Qt Creator by Devlovers ID.&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Links:&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;- Project Repository (&lt;a href=&quot;https://github.com/devlovers-id/bgcleaner-qt&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#d8d8d8;&quot;&gt;https://github.com/devlovers-id/bgcleaner-qt&lt;/span&gt;&lt;/a&gt;)&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;- Rembg Repository (&lt;a href=&quot;https://github.com/danielgatis/rembg&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#d8d8d8;&quot;&gt;https://github.com/danielgatis/rembg&lt;/span&gt;&lt;/a&gt;)&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;- Sapulatar-qt Repo (&lt;a href=&quot;https://github.com/devlovers-id/bgcleaner-qt&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#1c7eff;&quot;&gt;https://github.com/devlovers-id/bgcleaner-qt&lt;/span&gt;&lt;/a&gt;)&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;- Rembg by &lt;span style=&quot; font-weight:600;&quot;&gt;Danielgatis&lt;/span&gt; (&lt;a href=&quot;https://github.com/danielgatis/rembg&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#1c7eff;&quot;&gt;https://github.com/danielgatis/rembg&lt;/span&gt;&lt;/a&gt;)&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Version: &lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Qt Creator 4.12.2&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Based on Qt 5.14.2&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Based on Qt 5.14.2&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Devlovers ID Team: &lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;- Rania Amina &lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;- Sofyan Sugianto &lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;- Nugroho Dwi H. &lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Donate to This Project:&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://support.dev-is.my.id/&quot;&gt;&lt;span style=&quot; font-weight:600; text-decoration: underline; color:#007af4;&quot;&gt;https://support.dev-is.my.id/&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
       <property name="overwriteMode">
        <bool>false</bool>

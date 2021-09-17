@@ -178,7 +178,7 @@ def selectOutputdir_remote(input_textfield):
 
 def processRemote():
     print ("Remote process button clicked")
-    show_message(msg="Remote process Complete!")
+    show_message(msg="Yes, this button works fine!")
 
 
 
