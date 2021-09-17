@@ -17,7 +17,8 @@ echo -e "Checking dependencies:"
 git --version 
 GITRESULT=$?
 if [[ ! $GITRESULT -eq 0 ]]; then 
-    echo "Git not found! Please install git first!" 
+    echo "Git not found! Please install git first!"
+    exit
 fi
 
 ## python version
