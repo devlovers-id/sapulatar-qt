@@ -44,7 +44,7 @@ fi
 
 # Cloning repo
 if [[ ! -d $mainDir ]]; then
-    mkdir $mainDir
+    mkdir -p $mainDir
     git clone https://github.com/devlovers-id/sapulatar-qt.git $mainDir/sapulatar-qt
     cd $mainDir/sapulatar-qt
 else
