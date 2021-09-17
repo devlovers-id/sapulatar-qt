@@ -77,7 +77,7 @@ echo "Copying icon"
 cp $mainDir/sapulatar-qt/assets/sapulatar-qt.png $HOME/.local/share/icons/sapulatar-qt.png
 
 echo "Copying executable"
-echo -e "#!/bin/bash\n" >> /$HOME/.local/bin/sapulatar-qt
+echo -e "#!/bin/bash\n" > /$HOME/.local/bin/sapulatar-qt
 echo -e "if [[ \$1 == \"--uninstall\" ]]; then\n    echo \"Uninstalling\"\n\trm -rf $mainDir\n\trm $HOME/.local/share/icons/sapulatar-qt.png\n\trm $HOME/.local/bin/sapulatar-qt\n\trm $HOME/.local/share/applications/sapulatar-qt.desktop\n\texit\nfi" >> $HOME/.local/bin/sapulatar-qt
 echo "cd $(echo $mainDir/sapulatar-qt)" >> $HOME/.local/bin/sapulatar-qt
 echo -e "\n$PYVER main.py" >> $HOME/.local/bin/sapulatar-qt
