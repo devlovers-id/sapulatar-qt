@@ -1,6 +1,7 @@
 #!/bin/bash
 
 mainDir=$HOME/.local/share/devlovers-id
+PYVER="python3"
 
 if [[ $1 == "--uninstall" ]]; then
     echo "Uninstalling"
@@ -20,14 +21,22 @@ if [[ ! $GITRESULT -eq 0 ]]; then
 fi
 
 ## python version
-if [[ $(python3 -c 'import sys; print(".".join(map(str, sys.version_info[:3])))') < 3.7.99  ]]; then  
-    echo -e "Sapulatar need Python 3.8.x or newer \nexit now!"
-    exit
+python3.8 --version 
+PYRESULT=$?
+if [[ ! $PYRESULT -eq 0 ]]; then 
+    if [[ $(python3 -c 'import sys; print(".".join(map(str, sys.version_info[:3])))') < 3.7.99  ]]; then  
+        echo -e "Sapulatar need Python 3.8.x or newer \nexit now!"
+        exit
+    fi
 else
-    echo -e "Found: $(python --version)"
+    PYVER="python3.8"
+    echo -e "Found: $(python3.8 --version)"
     echo -e "upgrading pip"
-    python3 -m pip install --upgrade pip --user
+    $PYVER -m pip install --upgrade pip --user
 fi
+
+
+
 
 # Cloning repo
 if [[ ! -d $mainDir ]]; then
@@ -46,14 +55,14 @@ pip list | grep PySide2
 PYSIDERESULT=$?
 if [[ ! $PYSIDERESULT -eq 0 ]]; then
     echo -e "PySide2 not installed! Get it now ..."
-    python3 -m pip install pyside2
+    $PYVER -m pip install pyside2
 fi
 
 pip list | grep rembg
 PYSIDERESULT=$?
 if [[ ! $PYSIDERESULT -eq 0 ]]; then
     echo -e "rembg not installed! Get it now ..."
-    python3 -m pip install rembg
+    $PYVER -m pip install rembg
 fi
 
 
