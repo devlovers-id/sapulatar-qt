@@ -1,7 +1,7 @@
 #!/bin/bash
 
 mainDir=$HOME/.local/share/devlovers-id
-PYVER="python3"
+
 
 if [[ $1 == "--uninstall" ]]; then
     echo "Uninstalling"
@@ -27,6 +27,10 @@ if [[ ! $PYRESULT -eq 0 ]]; then
     if [[ $(python3 -c 'import sys; print(".".join(map(str, sys.version_info[:3])))') < 3.7.99  ]]; then  
         echo -e "Sapulatar need Python 3.8.x or newer \nexit now!"
         exit
+    else
+        PYVER="python3"
+        echo -e "upgrading pip"
+        $PYVER -m pip install --upgrade pip --user
     fi
 else
     PYVER="python3.8"
