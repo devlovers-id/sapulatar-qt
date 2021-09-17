@@ -29,7 +29,11 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>BG Cleaner - By DevloversID</string>
+   <string>Sapulatar-qt - By DevloversID</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>assets/logo.png</normaloff>assets/logo.png</iconset>
   </property>
   <widget class="QWidget" name="bgcleaner">
    <property name="minimumSize">
@@ -647,9 +651,9 @@ p, li { white-space: pre-wrap; }
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>30</y>
+      <y>10</y>
       <width>131</width>
-      <height>71</height>
+      <height>111</height>
      </rect>
     </property>
     <property name="text">

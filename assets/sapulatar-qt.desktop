@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Categories=Graphics;VectorGraphics;GTK;
+Name=sapulatar-qt
+Comment="Backround cleaner"
+TryExec=sapulatar-qt
+Exec=sapulatar-qt %F
+Icon=sapulatar-qt.png
+MimeType=inode/directory;
+X-KDE-Library=sapulatar
+X-KDE-FactoryName=devlovers
+X-KDE-ServiceType=utils
