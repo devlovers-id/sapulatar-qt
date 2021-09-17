@@ -4,7 +4,7 @@ import os
 import glob
 
 from PySide2.QtWidgets import QApplication, QWidget, QMainWindow, QMessageBox, QFileDialog
-from PySide2.QtCore import QFile
+from PySide2.QtCore import QFile, QThread, Signal
 from PySide2.QtUiTools import QUiLoader
 
 ## =====================
@@ -14,6 +14,8 @@ from PySide2.QtUiTools import QUiLoader
 
 app_errors = None
 inputSource_local = 0
+list_of_inputfiles = []
+list_of_outputfiles = []
 
 try:
     from rembg.bg import remove as removebg
@@ -25,6 +27,33 @@ try:
 except ImportError as e:
     print(e)
     app_errors = "Ups! rembg module not found! \n\nPlease install it first by running \n\"pip install rembg\" (or equivalent command) \n\nSapu Latar will exit now!"
+
+class TheMainThread(QThread):
+
+    export_finished = Signal(str, int)
+    export_start = Signal(str)
+
+    def __init__(self, t_input_files, t_output_files, removebg_args, parent = None ):
+        super(TheMainThread, self).__init__(parent)
+        self.t_input_files = t_input_files
+        self.t_output_files = t_output_files
+        self.removebg_args = removebg_args
+
+    def run(self):
+        for index,item in enumerate(self.t_input_files):
+            self.export_start.emit( self.t_input_files[index])
+            f = np.fromfile(item)
+            result = removebg(
+                f,
+                alpha_matting=self.removebg_args['a_value'],
+                alpha_matting_foreground_threshold=self.removebg_args['af_value'],
+                alpha_matting_background_threshold=self.removebg_args['ab_value'],
+                alpha_matting_erode_structure_size=self.removebg_args['ae_value'],
+                alpha_matting_base_size=self.removebg_args['az_value'],
+                )
+            img = Image.open(io.BytesIO(result)).convert("RGBA")
+            img.save( self.t_output_files[index])
+            self.export_finished.emit( self.t_output_files[index], index + 1 )
 
 ## General functions ================================================================================
 
@@ -71,7 +100,7 @@ def processLocal(the_window):
     ## Get Input Value
     inputFile = the_window.inputFile_local.text()
     fileName = os.path.basename(os.path.splitext(inputFile)[0])
-    outputDir = the_window.outputFile_local.text() + "/" + fileName + ".png"
+    outputDir = the_window.outputFile_local.text()
 
     # Arg. values
     # alphamatting
@@ -85,6 +114,14 @@ def processLocal(the_window):
     ae_value = the_window.val_erodeSize.value()
     az_value = the_window.val_baseSize.value()
 
+    removebg_args = {
+        "a_value": a_value,
+        "af_value": af_value,
+        "ab_value": ab_value,
+        "ae_value": ae_value,
+        "az_value": az_value
+    }
+
     # If blank
     if inputFile == "":
         show_error(msg="Please select input file/folder first!")
@@ -92,38 +129,39 @@ def processLocal(the_window):
         show_error(msg="Input file/folder not found!")
 
     if inputSource_local == 0:
-        f = np.fromfile(inputFile)
-        result = removebg(
-            f,
-            alpha_matting=a_value,
-            alpha_matting_foreground_threshold=af_value,
-            alpha_matting_background_threshold=ab_value,
-            alpha_matting_erode_structure_size=ae_value,
-            alpha_matting_base_size=az_value,
-            )
-        img = Image.open(io.BytesIO(result)).convert("RGBA")
-        img.save(outputDir)
-        show_message(msg="Process Complete for " + fileName + "!")
+        list_of_inputfiles.append(inputFile)
+        list_of_outputfiles.append( outputDir + "/" + fileName + ".png" )
     else:
         for entry in os.scandir(inputFile):
             if entry.is_file():
-                files = inputFile + "/" + entry.name
-                if files.endswith(('.jpg', '.jpeg', '.png', '.JPG', '.JPEG')):
+                the_file = inputFile + "/" + entry.name
+                if the_file.endswith(('.jpg', '.jpeg', '.png', '.JPG', '.JPEG')):
                     outputFiles = the_window.outputFile_local.text() + "/" + os.path.basename(os.path.splitext(entry.name)[0]) + ".png"
                     print("Processsing: " + entry.name)
-                    f = np.fromfile(files)
-                    result = removebg(
-                        f,
-                        alpha_matting=a_value,
-                        alpha_matting_foreground_threshold=af_value,
-                        alpha_matting_background_threshold=ab_value,
-                        alpha_matting_erode_structure_size=ae_value,
-                        alpha_matting_base_size=az_value,
-                        )
-                    img = Image.open(io.BytesIO(result)).convert("RGBA")
-                    img.save(outputFiles)
-        print("Done! Files saved in " + the_window.outputFile_local.text())
-        show_message(msg="!! Files saved in: \n" + the_window.outputFile_local.text() + "!")
+                    list_of_inputfiles.append(the_file)
+                    list_of_outputfiles.append(outputFiles)
+
+    # create the main process
+    main_process = TheMainThread(list_of_inputfiles, list_of_outputfiles, removebg_args, parent=the_window)
+    # conecting Signal
+    main_process.export_start.connect(set_currentFile)
+    main_process.export_finished.connect(push_notification)
+    # show progressbar
+    progressbar.progressBar.setMaximum(len(list_of_inputfiles))
+    progressbar.show()
+    # starting process
+    main_process.start()
+
+def push_notification(exported_file, progression):
+    if progression >= progressbar.progressBar.maximum():
+        progressbar.close()
+        show_message(msg=f"{progression} file(s) exported successfully!")
+    else:
+        progressbar.currentFile.setText(f"{exported_file} processed!")
+        progressbar.progressBar.setValue(progression)
+
+def set_currentFile(inputed_file):
+    progressbar.currentFile.setText(f"Processing: {inputed_file}")
 
 ## Remote Tab Functions ================================================================================
 ## select file (remote)
@@ -148,7 +186,7 @@ if __name__ == "__main__":
     loader = QUiLoader()
     app = QApplication(sys.argv)
     main_window = loader.load("form.ui", None)
-    progressbar = loader.load("dialog.ui", None)
+    progressbar = loader.load("dialog.ui", main_window)
 
     main_window.singleProcess_local.clicked.connect(dialogType_file)
     main_window.batchProcess_local.clicked.connect(dialogType_folder)
@@ -167,21 +205,3 @@ if __name__ == "__main__":
         show_message(msg_type=QMessageBox.Critical, msg=app_errors)
 
     app.exec_()
-
-## =====================
-## For Tab Remote
-## Get server url and port info
-## Get input info, file, files, or directory
-## Get input info of directory output
-
-## if input is file
-## the command is: wget -c http://192.168.1.55:5000/\?url=file://FULL/PATH/URL/INPUT.jpg -O OUTPUTDIR/OUTPUT.png
-## space in url should replace by %
-
-## if input is random files
-## the command is loop command (bash equiv): for i in list; do wget -c http://192.168.1.55:5000/\?url=file://FULL/PATH/URL/$i -O "OUTPUTDIR/${i%.*}.png"; done (if parameter active, add paramater after command)
-## space in url should replace by %
-
-## Run warning dialog if:
-## - path/file input/output not found or blank
-## - output folder or output file name already exist
