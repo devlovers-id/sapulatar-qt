@@ -86,6 +86,8 @@ chmod +x $HOME/.local/bin/sapulatar-qt
 
 echo "Copying launcher"
 cp $mainDir/sapulatar-qt/assets/sapulatar-qt.desktop $HOME/.local/share/applications/sapulatar-qt.desktop
+sed -i "s/TryExec=sapulatar-qt/TryExec=\/home\/$USER\/.local\/bin\/sapulatar-qt/" $HOME/.local/share/applications/sapulatar-qt.desktop
+sed -i "s/Exec=sapulatar-qt/Exec=\/home\/$USER\/.local\/bin\/sapulatar-qt/" $HOME/.local/share/applications/sapulatar-qt.desktop
 
 
 echo $PATH | sed "s/:/\n/g" | grep "$(echo $HOME)/.local/bin"
