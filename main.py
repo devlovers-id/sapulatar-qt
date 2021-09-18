@@ -128,6 +128,8 @@ def processLocal(the_window):
     if outputDir == "":
         show_error(msg="Input file/folder not found!")
 
+    list_of_inputfiles = []
+    list_of_outputfiles = []
     if inputSource_local == 0:
         list_of_inputfiles.append(inputFile)
         list_of_outputfiles.append( outputDir + "/" + fileName + ".png" )
