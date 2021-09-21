@@ -6,26 +6,54 @@ A simple gui apps to help you remove background from various images. This tool n
 
 ### Linux
 
-- Python 3.8
-
+- Python3 (Minimal Python 3.8)
 - rembg
-
+    ```bash
+    python3 -m pip install rembg
+    
+    # At first time, run some commands in order to dowload data model
+    rembg --help
+    rembg input.jpg -o output.jpg
+    ```
 - PySide2
+    ```bash
+    python3 -m pip install PySide2
+    ```
 
 ### Windows
+> Some dependencies need more space of storage, dwyor.
 
-- Python 3.8
-
+- Python 3.8 (Rekomendasi 3.8.7) - [Download here](https://www.python.org/downloads/release/python-387/). Pastikan untuk mencentang opsi "Add to Path" ketika proses pemasangan.
+- Ms Visualstudio C++ build tools - [Download here](https://download.microsoft.com/download/5/f/7/5f7acaeb-8363-451f-9425-68a90f98b238/visualcppbuildtools_full.exe)
 - rembg
+    ```bash
+    python3 -m pip install rembg
 
+    # At first time, run some commands in order to dowload data model
+    rembg --help
+    rembg input.jpg -o output.jpg
+    ```
 - PySide2
-
-- Ms Visualstudio C++ build tools
+    ```bash
+    python3 -m pip install PySide2
+    ```
 
 ## Install
 
-Coming soon
+Installer package in not available yet for now. But you can try to test Sapulatar-qt by following this steps.
 
+### Linux
+
+Open your terminal and run this command:
+```bash
+curl -o- https://raw.githubusercontent.com/devlovers-id/sapulatar-qt/master/install.sh | bash
+```
+
+### Windows
+
+Installer for windows is not available yet. If you wanna test on Windows, make sure yo've install all dependencies mentioned before. Then download the [source code here.](https://github.com/devlovers-id/sapulatar-qt/archive/refs/heads/master.zip). 
+
+Extract the zip file and run main.py. If you wanna run without console window just rename `main.py` to `sapulatar-qt.pyw`.
 
 
 ## Found A Bug?
