@@ -16,21 +16,17 @@ from sapulatar.ui.progress_dialog import Ui_progressbarDialog
 ## check dependencies: rembg, PIL, if not found run warning dialog
 
 app_errors = None
-inputSource_local = 0
-list_of_inputfiles = []
-list_of_outputfiles = []
 
-def init_libraries():
-    try:
-        from rembg.bg import remove as removebg
-        import numpy as np
-        from PIL import Image, ImageFile
-        ImageFile.LOAD_TRUNCATED_IMAGES = True
-        import io
-        print ("rembg module found!")
-    except ImportError as e:
-        print(e)
-        app_errors = "Ups! rembg module not found! \n\nPlease install it first by running \n\"pip install rembg\" (or equivalent command) \n\nSapu Latar will exit now!"
+try:
+   from rembg.bg import remove as removebg
+   import numpy as np
+   from PIL import Image, ImageFile
+   ImageFile.LOAD_TRUNCATED_IMAGES = True
+   import io
+   print ("rembg module found!")
+except ImportError as e:
+   print(e)
+   app_errors = "Ups! rembg module not found! \n\nPlease install it first by running \n\"pip install rembg\" (or equivalent command) \n\nSapu Latar will exit now!"
 
 class TheMainThread(QThread):
 
@@ -38,7 +34,7 @@ class TheMainThread(QThread):
     export_start = Signal(str)
 
     def __init__(self, t_input_files, t_output_files, removebg_args, parent = None ):
-        super(TheMainThread, self).__init__(parent)
+        super(TheMainThread, self).__init__(parent=parent)
         self.t_input_files = t_input_files
         self.t_output_files = t_output_files
         self.removebg_args = removebg_args
@@ -69,122 +65,23 @@ def show_error(msg_type=QMessageBox.Warning, msg="Error!", scrollable=False):
     box = QMessageBox(msg_type, "Notification", msg)
     box.exec_()
 
-## Local Tab Functions ================================================================================
-## select file
+class SapulatarProgressDialog(Ui_progressbarDialog, QDialog):
 
-def dialogType_file():
-    global inputSource_local
-    if main_window.singleProcess_local.isChecked:
-        print ("Single process selected!")
-        inputSource_local = 0
-        main_window.inputFile_local.setText("")
+    def __init__(self, parent=None, *args, **kwargs):
+        super(SapulatarProgressDialog, self).__init__(parent=parent)
+        self.setupUi(self)
+    
+    ## Process callbacks function =========================================================================
+    def push_notification(self, exported_file, progression):
+        if progression >= self.progressBar.maximum():
+            self.close()
+            show_message(msg=f"{progression} file(s) exported successfully!")
+        else:
+            self.currentFile.setText(f"{exported_file} processed!")
+            self.progressBar.setValue(progression)
 
-def dialogType_folder():
-    global inputSource_local
-    if main_window.batchProcess_local.isChecked:
-        print ("Batch process selected!")
-        inputSource_local = 1
-        main_window.inputFile_local.setText("")
-
-def selectFile(input_textfield):
-    if inputSource_local == 0:
-      opened_file, _ = QFileDialog.getOpenFileName(None, "Open Image", "", "Images (*.jpg *.png *.jpeg *.JPG)")
-    else:
-      opened_file = QFileDialog.getExistingDirectory(None, "Select Input Directory", "", QFileDialog.DontUseNativeDialog)
-    if opened_file:
-        input_textfield.setText(opened_file)
-        main_window.outputFile_local.setText(os.path.dirname(opened_file))
-## select output directory
-def selectOutputdir(input_textfield):
-    output_dir = QFileDialog.getExistingDirectory(None, "Select Output Directory", "", QFileDialog.DontUseNativeDialog)
-    if output_dir:
-        input_textfield.setText(output_dir)
-
-def processLocal(the_window):
-    ## Get Input Value
-    inputFile = the_window.inputFile_local.text()
-    fileName = os.path.basename(os.path.splitext(inputFile)[0])
-    outputDir = the_window.outputFile_local.text()
-
-    # Arg. values
-    # alphamatting
-    if the_window.opt_alphaMating.currentText() == "Use alpha matting cutout":
-        a_value = True
-    else:
-        a_value = False
-
-    af_value = the_window.val_fgThreshold.value()
-    ab_value = the_window.val_bgThreshold.value()
-    ae_value = the_window.val_erodeSize.value()
-    az_value = the_window.val_baseSize.value()
-
-    removebg_args = {
-        "a_value": a_value,
-        "af_value": af_value,
-        "ab_value": ab_value,
-        "ae_value": ae_value,
-        "az_value": az_value
-    }
-
-    # If blank
-    if inputFile == "":
-        show_error(msg="Please select input file/folder first!")
-    if outputDir == "":
-        show_error(msg="Input file/folder not found!")
-
-    list_of_inputfiles = []
-    list_of_outputfiles = []
-    if inputSource_local == 0:
-        list_of_inputfiles.append(inputFile)
-        list_of_outputfiles.append( outputDir + "/" + fileName + ".png" )
-    else:
-        for entry in os.scandir(inputFile):
-            if entry.is_file():
-                the_file = inputFile + "/" + entry.name
-                if the_file.endswith(('.jpg', '.jpeg', '.png', '.JPG', '.JPEG')):
-                    outputFiles = the_window.outputFile_local.text() + "/" + os.path.basename(os.path.splitext(entry.name)[0]) + ".png"
-                    print("Processsing: " + entry.name)
-                    list_of_inputfiles.append(the_file)
-                    list_of_outputfiles.append(outputFiles)
-
-    # create the main process
-    main_process = TheMainThread(list_of_inputfiles, list_of_outputfiles, removebg_args, parent=the_window)
-    # conecting Signal
-    main_process.export_start.connect(set_currentFile)
-    main_process.export_finished.connect(push_notification)
-    # show progressbar
-    progressbar.progressBar.setMaximum(len(list_of_inputfiles))
-    progressbar.show()
-    # starting process
-    main_process.start()
-
-def push_notification(exported_file, progression):
-    if progression >= progressbar.progressBar.maximum():
-        progressbar.close()
-        show_message(msg=f"{progression} file(s) exported successfully!")
-    else:
-        progressbar.currentFile.setText(f"{exported_file} processed!")
-        progressbar.progressBar.setValue(progression)
-
-def set_currentFile(inputed_file):
-    progressbar.currentFile.setText(f"Processing: {inputed_file}")
-
-## Remote Tab Functions ================================================================================
-## select file (remote)
-def selectFile_remote(input_textfield):
-    opened_file, _ = QFileDialog.getOpenFileName(None, "Open Image", "", "Images (*.jpg, *.png)")
-    if opened_file:
-        input_textfield.setText(opened_file)
-
-## select directory (remote)
-def selectOutputdir_remote(input_textfield):
-    output_dir = QFileDialog.getExistingDirectory(None, "Select Output Directory", "", QFileDialog.ShowDirsOnly)
-    if output_dir:
-        input_textfield.setText(output_dir)
-
-def processRemote():
-    print ("Remote process button clicked")
-    show_message(msg="Yes, this button works fine!")
+    def set_currentFile(self, inputed_file):
+        self.currentFile.setText(f"Processing: {inputed_file}")
 
 class SapulatarQtMain(Ui_MainWindow, QMainWindow):
 
@@ -192,33 +89,128 @@ class SapulatarQtMain(Ui_MainWindow, QMainWindow):
         super(SapulatarQtMain, self).__init__(parent=parent)
         self.setupUi(self)
 
-class SapulatarProgressDialog(Ui_progressbarDialog, QDialog):
+        self.inputSource_local = 0
 
-    def __init__(self, parent=None, *args, **kwargs):
-        super(SapulatarProgressDialog, self).__init__(parent=parent)
-        self.setupUi(self)
+        self.singleProcess_local.clicked.connect(self.dialogTypeFile)
+        self.batchProcess_local.clicked.connect(self.dialogTypefolder)
+        self.btnBrowse_local.clicked.connect(self.selectFile)
+        self.btnSave_local.clicked.connect(self.selectOutputDir)
+        self.btn_processLocal.clicked.connect(self.processLocal)
+        
+        self.btnBrowse_remote.clicked.connect(self.selectFile_remote)
+        self.btnSave_remote.clicked.connect(self.selectOutputdir_remote)
+        self.btn_processRemote.clicked.connect(self.processRemote)
+
+    def dialogTypeFile(self):
+        if self.singleProcess_local.isChecked:
+            print ("Single process selected!")
+            self.inputSource_local = 0
+            self.inputFile_local.setText("")
+
+    def dialogTypefolder(self):
+        if self.batchProcess_local.isChecked:
+            print ("Batch process selected!")
+            self.inputSource_local = 1
+            self.inputFile_local.setText("")
+
+    ## Local Tab Functions ================================================================================
+    def selectFile(self):
+        if self.inputSource_local == 0:
+          opened_file, _ = QFileDialog.getOpenFileName(None, "Open Image", "", "Images (*.jpg *.png *.jpeg *.JPG)")
+        else:
+          opened_file = QFileDialog.getExistingDirectory(None, "Select Input Directory", "", QFileDialog.DontUseNativeDialog)
+        if opened_file:
+            self.inputFile_local.setText(opened_file)
+            self.outputFile_local.setText(os.path.dirname(opened_file))
+
+    def selectOutputDir(self):
+        output_dir = QFileDialog.getExistingDirectory(None, "Select Output Directory", "", QFileDialog.DontUseNativeDialog)
+        if output_dir:
+            self.outputFile_local.setText(output_dir)
+
+    def processLocal(self):
+        ## Get Input Value
+        inputFile = self.inputFile_local.text()
+        fileName = os.path.basename(os.path.splitext(inputFile)[0])
+        outputDir = self.outputFile_local.text()
+
+        # Arg. values
+        # alphamatting
+        if self.opt_alphaMating.currentText() == "Use alpha matting cutout":
+            a_value = True
+        else:
+            a_value = False
+
+        af_value = self.val_fgThreshold.value()
+        ab_value = self.val_bgThreshold.value()
+        ae_value = self.val_erodeSize.value()
+        az_value = self.val_baseSize.value()
+
+        removebg_args = {
+            "a_value": a_value,
+            "af_value": af_value,
+            "ab_value": ab_value,
+            "ae_value": ae_value,
+            "az_value": az_value
+        }
+
+        # If blank
+        if inputFile == "":
+            show_error(msg="Please select input file/folder first!")
+        if outputDir == "":
+            show_error(msg="Input file/folder not found!")
+
+        list_of_inputfiles = []
+        list_of_outputfiles = []
+        
+        if self.inputSource_local == 0:
+            list_of_inputfiles.append(inputFile)
+            list_of_outputfiles.append( outputDir + "/" + fileName + ".png" )
+        else:
+            for entry in os.scandir(inputFile):
+                if entry.is_file():
+                    the_file = inputFile + "/" + entry.name
+                    if the_file.endswith(('.jpg', '.jpeg', '.png', '.JPG', '.JPEG')):
+                        outputFiles = self.outputFile_local.text() + "/" + os.path.basename(os.path.splitext(entry.name)[0]) + ".png"
+                        print("Processsing: " + entry.name)
+                        list_of_inputfiles.append(the_file)
+                        list_of_outputfiles.append(outputFiles)
+
+        # create the main process
+        main_process = TheMainThread(list_of_inputfiles, list_of_outputfiles, removebg_args, parent=self)
+        progressdialog = SapulatarProgressDialog(parent=self)
+        # conecting Signal
+        main_process.export_start.connect(progressdialog.set_currentFile)
+        main_process.export_finished.connect(progressdialog.push_notification)
+        # show progressbar
+        progressdialog.progressBar.setMaximum(len(list_of_inputfiles))
+        progressdialog.show()
+        # starting process
+        main_process.start()
+    
+    ## Remote Tab Functions ================================================================================
+    def selectFile_remote(self):
+        opened_file, _ = QFileDialog.getOpenFileName(None, "Open Image", "", "Images (*.jpg, *.png)")
+        if opened_file:
+            self.inputFile_remote.setText(opened_file)
+
+    def selectOutputdir_remote(self):
+        output_dir = QFileDialog.getExistingDirectory(None, "Select Output Directory", "", QFileDialog.ShowDirsOnly)
+        if output_dir:
+            self.outputFile_remote.setText(output_dir)
+    
+    def processRemote(self):
+        # TODO do remote processing
+        print ("Remote process button clicked")
+        show_message(msg="Yes, this button works fine!")
+
 
 def main():
-    init_libraries()
 
     loader = QUiLoader()
     app = QApplication(sys.argv)
 
     main_window = SapulatarQtMain(parent=None)
-    progressbar = SapulatarProgressDialog(parent=main_window)
-    # main_window = loader.load(os.path.join(os.path.abspath(__file__), "form.ui"), None)
-    # progressbar = loader.load(os.path.join(os.path.abspath(__file__), "dialog.ui"), main_window)
-
-    main_window.singleProcess_local.clicked.connect(dialogType_file)
-    main_window.batchProcess_local.clicked.connect(dialogType_folder)
-    main_window.btnBrowse_local.clicked.connect(lambda: selectFile(main_window.inputFile_local))
-    main_window.btnSave_local.clicked.connect(lambda: selectOutputdir(main_window.outputFile_local))
-    main_window.btn_processLocal.clicked.connect(lambda: processLocal(main_window))
-
-    main_window.btnBrowse_remote.clicked.connect(lambda: selectFile_remote(main_window.inputFile_remote))
-    main_window.btnSave_remote.clicked.connect(lambda: selectOutputdir_remote(main_window.outputFile_remote))
-    main_window.btn_processRemote.clicked.connect(processRemote)
-
     main_window.show()
 
     if app_errors:
