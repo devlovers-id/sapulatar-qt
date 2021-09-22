@@ -3,9 +3,12 @@ import sys
 import os
 import glob
 
-from PySide2.QtWidgets import QApplication, QWidget, QMainWindow, QMessageBox, QFileDialog
+from PySide2.QtWidgets import QApplication, QWidget, QMainWindow, QMessageBox, QFileDialog, QDialog
 from PySide2.QtCore import QFile, QThread, Signal
 from PySide2.QtUiTools import QUiLoader
+
+from sapulatar.ui.main_window import Ui_MainWindow
+from sapulatar.ui.progress_dialog import Ui_progressbarDialog
 
 ## =====================
 ## Initializing
@@ -17,16 +20,17 @@ inputSource_local = 0
 list_of_inputfiles = []
 list_of_outputfiles = []
 
-try:
-    from rembg.bg import remove as removebg
-    import numpy as np
-    from PIL import Image, ImageFile
-    ImageFile.LOAD_TRUNCATED_IMAGES = True
-    import io
-    print ("rembg module found!")
-except ImportError as e:
-    print(e)
-    app_errors = "Ups! rembg module not found! \n\nPlease install it first by running \n\"pip install rembg\" (or equivalent command) \n\nSapu Latar will exit now!"
+def init_libraries():
+    try:
+        from rembg.bg import remove as removebg
+        import numpy as np
+        from PIL import Image, ImageFile
+        ImageFile.LOAD_TRUNCATED_IMAGES = True
+        import io
+        print ("rembg module found!")
+    except ImportError as e:
+        print(e)
+        app_errors = "Ups! rembg module not found! \n\nPlease install it first by running \n\"pip install rembg\" (or equivalent command) \n\nSapu Latar will exit now!"
 
 class TheMainThread(QThread):
 
@@ -182,20 +186,34 @@ def processRemote():
     print ("Remote process button clicked")
     show_message(msg="Yes, this button works fine!")
 
+class SapulatarQtMain(Ui_MainWindow, QMainWindow):
 
+    def __init__(self, parent=None, *args, **kwargs):
+        super(SapulatarQtMain, self).__init__(parent=parent)
+        self.setupUi(self)
 
-if __name__ == "__main__":
+class SapulatarProgressDialog(Ui_progressbarDialog, QDialog):
+
+    def __init__(self, parent=None, *args, **kwargs):
+        super(SapulatarProgressDialog, self).__init__(parent=parent)
+        self.setupUi(self)
+
+def main():
+    init_libraries()
+
     loader = QUiLoader()
     app = QApplication(sys.argv)
-    main_window = loader.load("form.ui", None)
-    progressbar = loader.load("dialog.ui", main_window)
+
+    main_window = SapulatarQtMain(parent=None)
+    progressbar = SapulatarProgressDialog(parent=main_window)
+    # main_window = loader.load(os.path.join(os.path.abspath(__file__), "form.ui"), None)
+    # progressbar = loader.load(os.path.join(os.path.abspath(__file__), "dialog.ui"), main_window)
 
     main_window.singleProcess_local.clicked.connect(dialogType_file)
     main_window.batchProcess_local.clicked.connect(dialogType_folder)
     main_window.btnBrowse_local.clicked.connect(lambda: selectFile(main_window.inputFile_local))
     main_window.btnSave_local.clicked.connect(lambda: selectOutputdir(main_window.outputFile_local))
     main_window.btn_processLocal.clicked.connect(lambda: processLocal(main_window))
-
 
     main_window.btnBrowse_remote.clicked.connect(lambda: selectFile_remote(main_window.inputFile_remote))
     main_window.btnSave_remote.clicked.connect(lambda: selectOutputdir_remote(main_window.outputFile_remote))
@@ -207,3 +225,7 @@ if __name__ == "__main__":
         show_message(msg_type=QMessageBox.Critical, msg=app_errors)
 
     app.exec_()
+
+
+if __name__ == "__main__":
+    main()
