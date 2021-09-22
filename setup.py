@@ -35,10 +35,9 @@ def get_data_files():
     Return data_files in a platform dependent manner.
     """
     if sys.platform.startswith('linux'):
-        data_files = [('share/applications', ['scripts/sapulatar-qt.desktop']),
-                      ('share/icons/', ['icons/linux/sapulatar-qt.png']),
-                      ('share/metainfo',
-                       ['scripts/id.devlovers.sapulatar.appdata.xml'])]
+        data_files = [('share/applications', ['assets/sapulatar-qt.desktop']),
+                      ('share/icons/', ['assets/sapulatar-qt.png']),
+                     ]
     elif os.name == 'nt':
         # TODO add windows stuffs here
         data_files = []
@@ -64,33 +63,17 @@ class CustomInstallData(install_data):
 
 CMDCLASS = {'install_data': CustomInstallData}
 
-
-# =============================================================================
-# Main scripts
-# =============================================================================
-# NOTE: the '[...]_win_post_install.py' script is installed even on non-Windows
-# platforms due to a bug in pip installation process
-# See spyder-ide/spyder#1158.
-
-#SCRIPTS = ['%s_win_post_install.py' % NAME]
-SCRIPTS = []
-SCRIPTS.append('sapulatar')
-
-#if os.name == 'nt':
-#    SCRIPTS += ['sapulatar.bat']
-
-
 #=================
 # Setup Arguments
 #=================
 setup_args = dict(
     name=NAME,
     version=__version__,
-    scripts=[os.path.join('scripts', fname) for fname in SCRIPTS],
     platforms=["Windows", "Linux", "Mac OS-X"],
     python_requires='>=3.8',
     packages=get_packages(),
     data_files=get_data_files(),
+    package_data={'sapulatar': ['ui/assets/*.png']},
     url=__website_url__,
     license="GPL-3.0",
     author=__author__,
@@ -109,7 +92,7 @@ setup_args['entry_points'] = {
                 'sapulatar-qt = sapulatar.main:main'
             ]
         }
-setup_args.pop('scripts', None)
+
 #======================
 # Main Setup execution
 #======================
