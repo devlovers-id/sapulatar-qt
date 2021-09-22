@@ -46,14 +46,22 @@ Installer package in not available yet for now. But you can try to test Sapulata
 
 Open your terminal and run this command:
 ```bash
-curl -o- https://raw.githubusercontent.com/devlovers-id/sapulatar-qt/master/install.sh | bash
+git clone https://github.com/devlovers-id/sapulatar-qt.git /tmp/sapulatar-qt
+cd /tmp/sapulatar-qt
+sudo python3 setup.py install
 ```
 
 ### Windows
 
-Installer for windows is not available yet. If you wanna test on Windows, make sure yo've install all dependencies mentioned before. Then download the [source code here.](https://github.com/devlovers-id/sapulatar-qt/archive/refs/heads/master.zip). 
+Installer for windows is not available yet. If you wanna test on Windows, make sure yo've install all dependencies mentioned before. Then download the [source code here.](https://github.com/devlovers-id/sapulatar-qt/archive/refs/heads/master.zip) then extract it.
 
-Extract the zip file and run main.py. If you wanna run without console window just rename `main.py` to `sapulatar-qt.pyw`.
+Open console window/cmd (Windows button + R then type cmd)
+```bash
+# Go to your extract folder
+chdir C:\path\to\extracted\zip
+
+sudo python3 setup.py install
+```
 
 
 ## Found A Bug?

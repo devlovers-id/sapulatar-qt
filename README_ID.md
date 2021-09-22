@@ -45,14 +45,23 @@ Berkas paket instalasi memang belum tersedia, namun Anda dapat mencoba untuk men
 
 ### Linux
 ```bash
-curl -o- https://raw.githubusercontent.com/devlovers-id/sapulatar-qt/master/install.sh | bash
+git clone https://github.com/devlovers-id/sapulatar-qt.git /tmp/sapulatar-qt
+cd /tmp/sapulatar-qt
+sudo python3 setup.py install
 ```
 
 ### Windows
 
-Installer belum tersedia. Jika ingin mencoba di Windows, silakan lengkapi terlebih dahulu dependensi yang telah disebutkan di atas. Kemudian unduh kode sumber [di sini](https://github.com/devlovers-id/sapulatar-qt/archive/refs/heads/master.zip). 
+Installer belum tersedia. Jika ingin mencoba di Windows, silakan lengkapi terlebih dahulu dependensi yang telah disebutkan di atas. Kemudian unduh dan ekstrak kode sumber [di sini](https://github.com/devlovers-id/sapulatar-qt/archive/refs/heads/master.zip). 
 
-Ekstrak hasil unduhan tersebut lalu klik ganda main.py. Jika ingin menjalakan Sapulatar-qt tanpa membuka jendela console, cukup rename `main.py` menjadi `sapulatar-qt.pyw`.
+Buka jendela konsol (cmd)
+```bash
+# arahkan ke lokasi folder ekstrak
+chdir C:\arahkan\ke\folder\hasil\ekstrak
+
+sudo python3 setup.py install
+```
+
 
 ## Menemukan Bug?
 
