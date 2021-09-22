@@ -1,3 +1,3 @@
-from sapulatar import main
+from sapulatar.main import main
 
 main()
