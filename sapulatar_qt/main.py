@@ -7,8 +7,8 @@ from PySide2.QtWidgets import QApplication, QWidget, QMainWindow, QMessageBox, Q
 from PySide2.QtCore import QFile, QThread, Signal
 from PySide2.QtUiTools import QUiLoader
 
-from sapulatar.ui.main_window import Ui_MainWindow
-from sapulatar.ui.progress_dialog import Ui_progressbarDialog
+from sapulatar_qt.ui.main_window import Ui_MainWindow
+from sapulatar_qt.ui.progress_dialog import Ui_progressbarDialog
 
 ## =====================
 ## Initializing
