@@ -18,7 +18,8 @@ if v[0] >= 3 and v[:2] < (3, 8):
 
 from sapulatar_qt import __version__, __website_url__, __author__, __title__
 
-NAME="sapulatar_qt"
+NAME="sapulatar-qt"
+LIBNAME="sapulatar_qt"
 
 def get_subpackages(name):
     p = []
@@ -28,7 +29,7 @@ def get_subpackages(name):
     return p
 
 def get_packages():
-    packages = get_subpackages(NAME)
+    packages = get_subpackages(LIBNAME)
     return packages
 
 def get_data_files():
