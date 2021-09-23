@@ -7,6 +7,7 @@
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
+import os
 
 from PySide2.QtCore import *
 from PySide2.QtGui import *
@@ -27,7 +28,7 @@ class Ui_progressbarDialog(object):
         progressbarDialog.setMinimumSize(QSize(400, 150))
         progressbarDialog.setMaximumSize(QSize(400, 150))
         icon = QIcon()
-        icon.addFile(u"assets/logo.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon.addFile(os.path.join(os.path.dirname(__file__), "assets/logo.png"), QSize(), QIcon.Normal, QIcon.Off)
         progressbarDialog.setWindowIcon(icon)
         progressbarDialog.setModal(True)
         self.progressBar = QProgressBar(progressbarDialog)

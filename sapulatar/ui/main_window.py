@@ -7,6 +7,7 @@
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
+import os
 
 from PySide2.QtCore import *
 from PySide2.QtGui import *
@@ -26,7 +27,7 @@ class Ui_MainWindow(object):
         MainWindow.setMinimumSize(QSize(500, 700))
         MainWindow.setMaximumSize(QSize(500, 700))
         icon = QIcon()
-        icon.addFile(u"assets/logo.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon.addFile(os.path.join(os.path.dirname(__file__), "assets/logo.png"), QSize(), QIcon.Normal, QIcon.Off)
         MainWindow.setWindowIcon(icon)
         self.bgcleaner = QWidget(MainWindow)
         self.bgcleaner.setObjectName(u"bgcleaner")
@@ -193,7 +194,7 @@ class Ui_MainWindow(object):
         self.label_10 = QLabel(self.bgcleaner)
         self.label_10.setObjectName(u"label_10")
         self.label_10.setGeometry(QRect(10, 10, 131, 111))
-        self.label_10.setPixmap(QPixmap(u"assets/logo.png"))
+        self.label_10.setPixmap(QPixmap(os.path.join(os.path.dirname(__file__), "assets/logo.png")))
         self.label_10.setAlignment(Qt.AlignCenter)
         MainWindow.setCentralWidget(self.bgcleaner)
 
