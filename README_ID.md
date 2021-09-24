@@ -41,25 +41,24 @@ Perkakas GUI ringkas untuk membantu Anda menghapus latar pada gambar/foto. Perka
 
 ## Install
 
-Berkas paket instalasi memang belum tersedia, namun Anda dapat mencoba untuk menguji Sapulatar-qt dengan cara di bawah ini.
+Anda dapat memasang Sapulatar melalui kanal [Pypi](https://pypi.org/project/sapulatar-qt/) dengan menjalankan perintah berikut:
 
-### Linux
 ```bash
-git clone https://github.com/devlovers-id/sapulatar-qt.git /tmp/sapulatar-qt
-cd /tmp/sapulatar-qt
-sudo python3 setup.py install
+pip install sapulatar-qt
+
+atau
+
+python3 -m pip install sapulatar-qt
 ```
 
-### Windows
+For uninstall, just run: 
 
-Installer belum tersedia. Jika ingin mencoba di Windows, silakan lengkapi terlebih dahulu dependensi yang telah disebutkan di atas. Kemudian unduh dan ekstrak kode sumber [di sini](https://github.com/devlovers-id/sapulatar-qt/archive/refs/heads/master.zip). 
-
-Buka jendela konsol (cmd)
 ```bash
-# arahkan ke lokasi folder ekstrak
-chdir C:\arahkan\ke\folder\hasil\ekstrak
+pip uninstall sapulatar-qt
 
-sudo python3 setup.py install
+atau
+
+python3 -m pip uninstall sapulatar-qt
 ```
 
 

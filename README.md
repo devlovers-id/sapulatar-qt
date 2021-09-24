@@ -23,7 +23,7 @@ A simple gui apps to help you remove background from various images. This tool n
 ### Windows
 > Some dependencies need more space of storage, dwyor.
 
-- Python 3.8 (Rekomendasi 3.8.7) - [Download here](https://www.python.org/downloads/release/python-387/). Pastikan untuk mencentang opsi "Add to Path" ketika proses pemasangan.
+- Python 3.8 (3.8.7 is recomended) - [Download here](https://www.python.org/downloads/release/python-387/). Make sure you've check "Add to Path" option when installing.
 - Ms Visualstudio C++ build tools - [Download here](https://download.microsoft.com/download/5/f/7/5f7acaeb-8363-451f-9425-68a90f98b238/visualcppbuildtools_full.exe)
 - rembg
     ```bash
@@ -40,29 +40,25 @@ A simple gui apps to help you remove background from various images. This tool n
 
 ## Install
 
-Installer package in not available yet for now. But you can try to test Sapulatar-qt by following this steps.
+You can install sapulatar-qt via [Pypi](https://pypi.org/project/sapulatar-qt/) by running this command:
 
-### Linux
-
-Open your terminal and run this command:
 ```bash
-git clone https://github.com/devlovers-id/sapulatar-qt.git /tmp/sapulatar-qt
-cd /tmp/sapulatar-qt
-sudo python3 setup.py install
+pip install sapulatar-qt
+
+or 
+
+python3 -m pip install sapulatar-qt
 ```
 
-### Windows
+For uninstall, just run: 
 
-Installer for windows is not available yet. If you wanna test on Windows, make sure yo've install all dependencies mentioned before. Then download the [source code here.](https://github.com/devlovers-id/sapulatar-qt/archive/refs/heads/master.zip) then extract it.
-
-Open console window/cmd (Windows button + R then type cmd)
 ```bash
-# Go to your extract folder
-chdir C:\path\to\extracted\zip
+pip uninstall sapulatar-qt
 
-sudo python3 setup.py install
+or 
+
+python3 -m pip uninstall sapulatar-qt
 ```
-
 
 ## Found A Bug?
 
@@ -73,6 +69,7 @@ We'll check it as soon as we can and provide regular updates.
 
 We're happy to save you time and help get your task done efficiently. If you feel the same, besides donating, you can help the developer by making tutorials, reviews, or the like for other people to know about this project. It will make you, the Devlovers!
 [Donate Now](https://support.dev-is.my.id)
+
 **Usefull link**
 
 - [Rembg repository](https://github.com/danielgatis/rembg)
