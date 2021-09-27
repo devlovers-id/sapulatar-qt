@@ -8,6 +8,7 @@ from PySide2.QtWidgets import QApplication, QWidget, QMainWindow, QMessageBox, Q
 from PySide2.QtCore import QFile, QThread, Signal
 from PySide2.QtUiTools import QUiLoader
 
+from sapulatar_qt import __version__
 from sapulatar_qt.ui.main_window import Ui_MainWindow
 from sapulatar_qt.ui.progress_dialog import Ui_progressbarDialog
 
@@ -225,6 +226,12 @@ def main():
             default="-",
             type=str,
             help="Input 1 file or directory path"
+    )
+
+    ap.add_argument(
+            "--version",
+            action="version",
+            version=__version__
     )
 
     args = ap.parse_args()
