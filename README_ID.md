@@ -74,7 +74,7 @@ Kami senang dapat membantu Anda memanfaatkan waktu serta menyelesaikan pekerjaan
 - [Gimpscape ID](https://gimpscape.org)
 - [Kelompok Linux Arek Suroboyo (KLAS)](https://klas.or.id)
 - [Sepatu Fans](https://sepatuku.fans.co.id)
-- [zectStudio](zectstudio.id)
+- [zectStudio](https://zectstudio.id)
 
 
 [Donate Now](https://support.dev-is.my.id)
