@@ -1,3 +1,3 @@
-from sapulatar.main import main
+from sapulatar_qt.main import main
 
 main()
