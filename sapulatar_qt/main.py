@@ -1,4 +1,5 @@
 # This Python file uses the following encoding: utf-8
+import argparse
 import sys
 import os
 import glob
@@ -85,11 +86,21 @@ class SapulatarProgressDialog(Ui_progressbarDialog, QDialog):
 
 class SapulatarQtMain(Ui_MainWindow, QMainWindow):
 
-    def __init__(self, parent=None, *args, **kwargs):
+    def __init__(self, parent=None, args=None):
         super(SapulatarQtMain, self).__init__(parent=parent)
         self.setupUi(self)
 
         self.inputSource_local = 0
+
+        # parse the input argument
+        if not args is None:
+            inputpath = args.input if args.input != "-" else ""
+            if os.path.exists(inputpath):
+                if os.path.isdir(inputpath):
+                    self.inputSource_local = 1
+                    self.batchProcess_local.setChecked(True)
+                self.inputFile_local.setText(inputpath)
+                self.outputFile_local.setText(os.path.dirname(inputpath))
 
         self.singleProcess_local.clicked.connect(self.dialogTypeFile)
         self.batchProcess_local.clicked.connect(self.dialogTypefolder)
@@ -207,10 +218,21 @@ class SapulatarQtMain(Ui_MainWindow, QMainWindow):
 
 def main():
 
+    ap = argparse.ArgumentParser()
+    ap.add_argument(
+            "input",
+            nargs="?",
+            default="-",
+            type=str,
+            help="Input 1 file or directory path"
+    )
+
+    args = ap.parse_args()
+
     loader = QUiLoader()
     app = QApplication(sys.argv)
 
-    main_window = SapulatarQtMain(parent=None)
+    main_window = SapulatarQtMain(None, args)
     main_window.show()
 
     if app_errors:
