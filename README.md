@@ -70,6 +70,12 @@ We'll check it as soon as we can and provide regular updates.
 We're happy to save you time and help get your task done efficiently. If you feel the same, besides donating, you can help the developer by making tutorials, reviews, or the like for other people to know about this project. It will make you, the Devlovers!
 [Donate Now](https://support.dev-is.my.id)
 
+### **Community Partners & Project Donors**
+- [Gimpscape ID](https://gimpscape.org)
+- [Kelompok Linux Arek Suroboyo (KLAS)](https://klas.or.id)
+- [Sepatu Fans](https://sepatuku.fans.co.id)
+- [zectStudio](zectstudio.id)
+
 **Usefull link**
 
 - [Rembg repository](https://github.com/danielgatis/rembg)

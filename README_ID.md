@@ -70,6 +70,13 @@ Aplikasi stabil itu mitos. Jadi, jika Anda menemukan kutu atau mengalami kendala
 
 Kami senang dapat membantu Anda memanfaatkan waktu serta menyelesaikan pekerjaan secara efisien. Jika Anda merasakan hal serupa, selain berdonasi, Anda dapat membentu pengembang misalnya dengan membuat tutorial, membuat ulasan, atau berbgai ke sekitar Anda tentang proyek ini. Hal tersebut akan menjadikan Anda, The Devlovers!
 
+### **Rekan Komunitas & Donatur Proyek**
+- [Gimpscape ID](https://gimpscape.org)
+- [Kelompok Linux Arek Suroboyo (KLAS)](https://klas.or.id)
+- [Sepatu Fans](https://sepatuku.fans.co.id)
+- [zectStudio](zectstudio.id)
+
+
 [Donate Now](https://support.dev-is.my.id)
 **Tautan-Tautan**
 
