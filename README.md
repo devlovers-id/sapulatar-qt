@@ -74,7 +74,7 @@ We're happy to save you time and help get your task done efficiently. If you fee
 - [Gimpscape ID](https://gimpscape.org)
 - [Kelompok Linux Arek Suroboyo (KLAS)](https://klas.or.id)
 - [Sepatu Fans](https://sepatuku.fans.co.id)
-- [zectStudio](zectstudio.id)
+- [zectStudio](https://zectstudio.id)
 
 **Usefull link**
 
