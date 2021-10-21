@@ -3,6 +3,7 @@ import argparse
 import sys
 import os
 import glob
+import signal
 
 from PySide2.QtWidgets import QApplication, QWidget, QMainWindow, QMessageBox, QFileDialog, QDialog
 from PySide2.QtCore import QFile, QThread, Signal
@@ -218,7 +219,7 @@ class SapulatarQtMain(Ui_MainWindow, QMainWindow):
 
 
 def main():
-
+    signal.signal(signal.SIGINT, signal.SIG_DFL)
     ap = argparse.ArgumentParser()
     ap.add_argument(
             "input",
