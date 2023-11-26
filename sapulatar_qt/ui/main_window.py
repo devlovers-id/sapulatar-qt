@@ -3,16 +3,22 @@
 ################################################################################
 ## Form generated from reading UI file 'form.ui'
 ##
-## Created by: Qt User Interface Compiler version 5.15.2
+## Created by: Qt User Interface Compiler version 6.6.0
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
-import os
 
-from PySide6.QtCore import *
-from PySide6.QtGui import *
-from PySide6.QtWidgets import *
-
+from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
+    QMetaObject, QObject, QPoint, QRect,
+    QSize, QTime, QUrl, Qt)
+from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
+    QFont, QFontDatabase, QGradient, QIcon,
+    QImage, QKeySequence, QLinearGradient, QPainter,
+    QPalette, QPixmap, QRadialGradient, QTransform)
+from PySide6.QtWidgets import (QApplication, QComboBox, QGroupBox, QLabel,
+    QLineEdit, QMainWindow, QPushButton, QRadioButton,
+    QSizePolicy, QSpinBox, QTabWidget, QTextBrowser,
+    QToolButton, QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -27,7 +33,7 @@ class Ui_MainWindow(object):
         MainWindow.setMinimumSize(QSize(500, 700))
         MainWindow.setMaximumSize(QSize(500, 700))
         icon = QIcon()
-        icon.addFile(os.path.join(os.path.dirname(__file__), "assets/logo.png"), QSize(), QIcon.Normal, QIcon.Off)
+        icon.addFile(u"assets/logo.png", QSize(), QIcon.Normal, QIcon.Off)
         MainWindow.setWindowIcon(icon)
         self.bgcleaner = QWidget(MainWindow)
         self.bgcleaner.setObjectName(u"bgcleaner")
@@ -39,8 +45,8 @@ class Ui_MainWindow(object):
         self.textBrowser.setStyleSheet(u"background-color: rgba(255, 255, 255, 0);\n"
 "border: none;")
         self.textBrowser.setOverwriteMode(False)
-        self.textBrowser.setTabStopDistance(80)
         self.textBrowser.setOpenExternalLinks(True)
+        self.textBrowser.setProperty("tabStopWidth", 80)
         self.mainTab = QTabWidget(self.bgcleaner)
         self.mainTab.setObjectName(u"mainTab")
         self.mainTab.setGeometry(QRect(0, 140, 501, 541))
@@ -90,7 +96,7 @@ class Ui_MainWindow(object):
         self.groupBox_3.setObjectName(u"groupBox_3")
         self.groupBox_3.setGeometry(QRect(10, 220, 451, 241))
         font = QFont()
-        font.setFamily(u"DejaVu Sans")
+        font.setFamilies([u"DejaVu Sans"])
         self.groupBox_3.setFont(font)
         self.opt_alphaMating = QComboBox(self.groupBox_3)
         self.opt_alphaMating.addItem("")
@@ -140,6 +146,7 @@ class Ui_MainWindow(object):
         self.mainTab.addTab(self.tabLocal, "")
         self.tabRemote = QWidget()
         self.tabRemote.setObjectName(u"tabRemote")
+        self.tabRemote.setEnabled(False)
         self.groupBox_2 = QGroupBox(self.tabRemote)
         self.groupBox_2.setObjectName(u"groupBox_2")
         self.groupBox_2.setGeometry(QRect(10, 10, 451, 91))
@@ -188,13 +195,13 @@ class Ui_MainWindow(object):
         self.textBrowser_2.setStyleSheet(u"background-color: rgba(255, 255, 255, 0);\n"
 "border: none;")
         self.textBrowser_2.setOverwriteMode(False)
-        self.textBrowser_2.setTabStopDistance(80)
         self.textBrowser_2.setOpenExternalLinks(True)
+        self.textBrowser_2.setProperty("tabStopWidth", 80)
         self.mainTab.addTab(self.tabAbout, "")
         self.label_10 = QLabel(self.bgcleaner)
         self.label_10.setObjectName(u"label_10")
         self.label_10.setGeometry(QRect(10, 10, 131, 111))
-        self.label_10.setPixmap(QPixmap(os.path.join(os.path.dirname(__file__), "assets/logo.png")))
+        self.label_10.setPixmap(QPixmap(u"assets/logo.png"))
         self.label_10.setAlignment(Qt.AlignCenter)
         MainWindow.setCentralWidget(self.bgcleaner)
 
@@ -209,11 +216,15 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"Sapulatar-qt by DevloversID", None))
         self.textBrowser.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'DejaVu Sans'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">Sapulatar-qt by Devlovers ID</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">A simple gui apps to help you remove background from various images. This tool need rembg module to done its job. Please install it first if the module not exist yet in your system.</p></body></html>", None))
+"hr { height: 1px; border-width: 0; }\n"
+"li.unchecked::marker { content: \"\\2610\"; }\n"
+"li.checked::marker { content: \"\\2612\"; }\n"
+"</style></head><body style=\" font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'DejaVu Sans'; font-size:10pt; font-weight:600;\">Sapulatar-qt by Devlovers ID</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'DejaVu Sans'; font-size:10pt;\">A simple gui apps to help you remove background from various images. This tool need rembg module to do"
+                        "ne its job. Please install it first if the module not exist yet in your system.</span></p></body></html>", None))
         self.groupBox.setTitle(QCoreApplication.translate("MainWindow", u"Files/Folder", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"Select Files/Folder", None))
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"Directory to save results", None))
@@ -248,30 +259,35 @@ class Ui_MainWindow(object):
         self.btn_processRemote.setText(QCoreApplication.translate("MainWindow", u"Process Now!", None))
         self.mainTab.setTabText(self.mainTab.indexOf(self.tabRemote), QCoreApplication.translate("MainWindow", u"Remote Process (WIP)", None))
         self.textBrowser_2.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'DejaVu Sans'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Sapulatar-qt v1.0.0-alpha </p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">made with \u2764\ufe0f with Qt Creator by Devlovers ID.</p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Links:</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; m"
-                        "argin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">- Sapulatar-qt Repo (<a href=\"https://github.com/devlovers-id/bgcleaner-qt\"><span style=\" text-decoration: underline; color:#1c7eff;\">https://github.com/devlovers-id/bgcleaner-qt</span></a>)</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">- Rembg by <span style=\" font-weight:600;\">Danielgatis</span> (<a href=\"https://github.com/danielgatis/rembg\"><span style=\" text-decoration: underline; color:#1c7eff;\">https://github.com/danielgatis/rembg</span></a>)</p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Version: </p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-inden"
-                        "t:0; text-indent:0px;\">Qt Creator 4.12.2</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Based on Qt 5.14.2</p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Devlovers ID Team: </p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">- Rania Amina </p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">- Sofyan Sugianto </p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">- Nugroho Dwi H. </p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin"
-                        "-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Donate to This Project:</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><a href=\"https://support.dev-is.my.id/\"><span style=\" font-weight:600; text-decoration: underline; color:#007af4;\">https://support.dev-is.my.id/</span></a></p></body></html>", None))
+"hr { height: 1px; border-width: 0; }\n"
+"li.unchecked::marker { content: \"\\2610\"; }\n"
+"li.checked::marker { content: \"\\2612\"; }\n"
+"</style></head><body style=\" font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'DejaVu Sans'; font-size:10pt;\">Sapulatar-qt v1.0.0-alpha </span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'DejaVu Sans'; font-size:10pt;\">made with \u2764\ufe0f with Qt Creator by Devlovers ID.</span></p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0p"
+                        "x; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'DejaVu Sans'; font-size:10pt;\"><br /></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'DejaVu Sans'; font-size:10pt;\">Links:</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'DejaVu Sans'; font-size:10pt;\">- Sapulatar-qt Repo (</span><a href=\"https://github.com/devlovers-id/bgcleaner-qt\"><span style=\" font-family:'DejaVu Sans'; font-size:10pt; text-decoration: underline; color:#1c7eff;\">https://github.com/devlovers-id/bgcleaner-qt</span></a><span style=\" font-family:'DejaVu Sans'; font-size:10pt;\">)</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'DejaVu Sans'; font"
+                        "-size:10pt;\">- Rembg by </span><span style=\" font-family:'DejaVu Sans'; font-size:10pt; font-weight:600;\">Danielgatis</span><span style=\" font-family:'DejaVu Sans'; font-size:10pt;\"> (</span><a href=\"https://github.com/danielgatis/rembg\"><span style=\" font-family:'DejaVu Sans'; font-size:10pt; text-decoration: underline; color:#1c7eff;\">https://github.com/danielgatis/rembg</span></a><span style=\" font-family:'DejaVu Sans'; font-size:10pt;\">)</span></p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'DejaVu Sans'; font-size:10pt;\"><br /></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'DejaVu Sans'; font-size:10pt;\">Version: </span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-fa"
+                        "mily:'DejaVu Sans'; font-size:10pt;\">Qt Creator 4.12.2</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'DejaVu Sans'; font-size:10pt;\">Based on Qt 5.14.2</span></p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'DejaVu Sans'; font-size:10pt;\"><br /></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'DejaVu Sans'; font-size:10pt;\">Devlovers ID Team: </span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'DejaVu Sans'; font-size:10pt;\">- Rania Amina </span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-i"
+                        "ndent:0px;\"><span style=\" font-family:'DejaVu Sans'; font-size:10pt;\">- Sofyan Sugianto </span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'DejaVu Sans'; font-size:10pt;\">- Nugroho Dwi H. </span></p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'DejaVu Sans'; font-size:10pt;\"><br /></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'DejaVu Sans'; font-size:10pt;\">Donate to This Project:</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><a href=\"https://support.dev-is.my.id/\"><span style=\" font-family:'DejaVu Sans'; font-size:10pt; font-weight:600; text-decoration: underline; color:#007af4;"
+                        "\">https://support.dev-is.my.id/</span></a></p></body></html>", None))
         self.mainTab.setTabText(self.mainTab.indexOf(self.tabAbout), QCoreApplication.translate("MainWindow", u"About", None))
         self.label_10.setText("")
     # retranslateUi
