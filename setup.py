@@ -4,6 +4,7 @@ import os
 import io
 import shutil
 import sys
+import subprocess
 
 from distutils.command.install_data import install_data
 from setuptools import setup, find_packages
@@ -91,7 +92,7 @@ setup_args = dict(
 )
 
 install_requires = [
-    "PySide2==5.15.2",
+    "PySide6==6.6.0",
 ]
 
 setup_args['install_requires'] = install_requires

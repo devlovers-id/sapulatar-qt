@@ -5,9 +5,9 @@ import os
 import glob
 import signal
 
-from PySide2.QtWidgets import QApplication, QWidget, QMainWindow, QMessageBox, QFileDialog, QDialog
-from PySide2.QtCore import QFile, QThread, Signal
-from PySide2.QtUiTools import QUiLoader
+from PySide6.QtWidgets import QApplication, QWidget, QMainWindow, QMessageBox, QFileDialog, QDialog
+from PySide6.QtCore import QFile, QThread, Signal
+from PySide6.QtUiTools import QUiLoader
 
 from sapulatar_qt import __version__
 from sapulatar_qt.ui.main_window import Ui_MainWindow
@@ -22,7 +22,7 @@ app_errors = None
 
 try:
    from rembg.bg import remove as removebg
-   import numpy as np
+#    import numpy as np
    from PIL import Image, ImageFile
    ImageFile.LOAD_TRUNCATED_IMAGES = True
    import io
@@ -45,7 +45,8 @@ class TheMainThread(QThread):
     def run(self):
         for index,item in enumerate(self.t_input_files):
             self.export_start.emit( self.t_input_files[index])
-            f = np.fromfile(item)
+            # f = np.fromfile(item)
+            f = Image.open(item)
             result = removebg(
                 f,
                 alpha_matting=self.removebg_args['a_value'],
@@ -54,8 +55,10 @@ class TheMainThread(QThread):
                 alpha_matting_erode_structure_size=self.removebg_args['ae_value'],
                 alpha_matting_base_size=self.removebg_args['az_value'],
                 )
-            img = Image.open(io.BytesIO(result)).convert("RGBA")
-            img.save( self.t_output_files[index])
+            # img = Image.open(io.BytesIO(result)).convert("RGBA")
+            # img.save( self.t_output_files[index])
+            result.save(self.t_output_files[index])
+            f.close()
             self.export_finished.emit( self.t_output_files[index], index + 1 )
 
 ## General functions ================================================================================
