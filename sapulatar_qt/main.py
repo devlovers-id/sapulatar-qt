@@ -58,6 +58,7 @@ class TheMainThread(QThread):
             # img = Image.open(io.BytesIO(result)).convert("RGBA")
             # img.save( self.t_output_files[index])
             result.save(self.t_output_files[index])
+            f.close()
             self.export_finished.emit( self.t_output_files[index], index + 1 )
 
 ## General functions ================================================================================
