@@ -9,9 +9,9 @@
 ################################################################################
 import os
 
-from PySide2.QtCore import *
-from PySide2.QtGui import *
-from PySide2.QtWidgets import *
+from PySide6.QtCore import *
+from PySide6.QtGui import *
+from PySide6.QtWidgets import *
 
 
 class Ui_MainWindow(object):
@@ -39,7 +39,7 @@ class Ui_MainWindow(object):
         self.textBrowser.setStyleSheet(u"background-color: rgba(255, 255, 255, 0);\n"
 "border: none;")
         self.textBrowser.setOverwriteMode(False)
-        self.textBrowser.setTabStopWidth(80)
+        self.textBrowser.setTabStopDistance(80)
         self.textBrowser.setOpenExternalLinks(True)
         self.mainTab = QTabWidget(self.bgcleaner)
         self.mainTab.setObjectName(u"mainTab")
@@ -188,7 +188,7 @@ class Ui_MainWindow(object):
         self.textBrowser_2.setStyleSheet(u"background-color: rgba(255, 255, 255, 0);\n"
 "border: none;")
         self.textBrowser_2.setOverwriteMode(False)
-        self.textBrowser_2.setTabStopWidth(80)
+        self.textBrowser_2.setTabStopDistance(80)
         self.textBrowser_2.setOpenExternalLinks(True)
         self.mainTab.addTab(self.tabAbout, "")
         self.label_10 = QLabel(self.bgcleaner)

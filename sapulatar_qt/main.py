@@ -5,9 +5,9 @@ import os
 import glob
 import signal
 
-from PySide2.QtWidgets import QApplication, QWidget, QMainWindow, QMessageBox, QFileDialog, QDialog
-from PySide2.QtCore import QFile, QThread, Signal
-from PySide2.QtUiTools import QUiLoader
+from PySide6.QtWidgets import QApplication, QWidget, QMainWindow, QMessageBox, QFileDialog, QDialog
+from PySide6.QtCore import QFile, QThread, Signal
+from PySide6.QtUiTools import QUiLoader
 
 from sapulatar_qt import __version__
 from sapulatar_qt.ui.main_window import Ui_MainWindow
